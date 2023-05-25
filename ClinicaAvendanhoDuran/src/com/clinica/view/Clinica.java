@@ -4,6 +4,8 @@
  */
 package com.clinica.view;
 
+import com.clinica.controller.Controller;
+
 /**
  *
  * @author marcosfa
@@ -153,6 +155,7 @@ public class Clinica extends javax.swing.JFrame {
 
     private void btn_iniciar_sesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciar_sesionActionPerformed
         // TODO add your handling code here:
+        Controller.logIn(txt_user.getText(), txt_password.getText());
     }//GEN-LAST:event_btn_iniciar_sesionActionPerformed
 
     /**

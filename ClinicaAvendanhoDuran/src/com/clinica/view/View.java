@@ -17,6 +17,10 @@ public class View {
             x.setVisible(true);
     }
     
+    public void mostrarDentista(){
+        Dentista x = new Dentista();
+        x.setVisible(true);
+    }
     public void infoUser(SingletonConexion x){
        x.toString();
     }
