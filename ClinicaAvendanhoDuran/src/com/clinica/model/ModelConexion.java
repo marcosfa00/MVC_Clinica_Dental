@@ -5,8 +5,8 @@
 package com.clinica.model;
 
 import com.clinica.baseDatos.SingletonConexion;
-import static com.clinica.baseDatos.SingletonConexion.DENTISTA;
-import static com.clinica.baseDatos.SingletonConexion.RECEPCIONISTA;
+import static com.clinica.baseDatos.SingletonConexion.USUARIOS;
+import static com.clinica.baseDatos.SingletonConexion.ADMIN;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -45,4 +45,6 @@ public class ModelConexion {
         }
         return conexion;
     }
+    
+    
 }

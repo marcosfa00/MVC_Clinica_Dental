@@ -6,10 +6,9 @@ package com.clinica.controller;
 
 import com.clinica.baseDatos.SingletonConexion;
 import static com.clinica.baseDatos.SingletonConexion.ADMIN;
-import static com.clinica.baseDatos.SingletonConexion.DENTISTA;
-import static com.clinica.baseDatos.SingletonConexion.RECEPCIONISTA;
+import static com.clinica.baseDatos.SingletonConexion.USUARIOS;
 import com.clinica.model.ModelConexion;
-import com.clinica.model.ModelMetodos;
+import com.clinica.model.ModelLogin;
 import com.clinica.view.View;
 import java.sql.SQLException;
 import java.util.Scanner;
@@ -22,34 +21,39 @@ public class Controller {
     
     static View vista = new View();
     static ModelConexion Mconexion = new ModelConexion();
-    static ModelMetodos modelM = new ModelMetodos();
+    static ModelLogin modelLog = new ModelLogin();
     
-    public static void logIn(String user,String pwd){
-       if( modelM.login(user, pwd)){
-           vista.mostrarDentista();
-       }else{
+    /**
+     * MÉTODO LOG IN QUE LLAAM AL MODELO LOG IN PARA DIFERENCIAR CÓMO HACER LA CONEXIÓN CON LA BASE DE DATOS
+     * @param user
+     * @param pwd
+     * @throws SQLException 
+     */
+    public static void LogIn(String user,String pwd) throws SQLException{
+       if( modelLog.loginAdmin(user, pwd)){
+           Mconexion.getConexion(ADMIN);
+           vista.mostrarAdmin();
+       }else if(modelLog.loginAdmin(user, pwd)){
+           Mconexion.getConexion(USUARIOS);
+           
+       }
+       else{
            System.out.println("Error en el log in");
        }
         
     }
     
-    
+    public static void getConexion(int device) throws SQLException{
+        Mconexion.getConexion(device);
+    }
     
     
     public static void main(String[] args) throws SQLException {
-       
-      
-       
-      
-              vista.logIn();
+
+              vista.mostrarLogIn();
               
-              SingletonConexion usrDentist = SingletonConexion.getInstance(DENTISTA);
-              SingletonConexion userRecepcion  = SingletonConexion.getInstance(RECEPCIONISTA);
-              System.out.println("info de ambos objetos instaciados");
-              vista.infoUser(userRecepcion);
-              vista.infoUser(usrDentist);
-              //Mconexion.getConexion(DENTISTA);
-              Mconexion.getConexion(ADMIN);
+              
+             
               
     }
     

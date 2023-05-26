@@ -12,8 +12,8 @@ import com.clinica.baseDatos.SingletonConexion;
  */
 public class View {
     
-    public void logIn(){
-            Clinica x = new Clinica();
+    public void mostrarLogIn(){
+            Login x = new Login();
             x.setVisible(true);
     }
     
@@ -21,9 +21,18 @@ public class View {
         Dentista x = new Dentista();
         x.setVisible(true);
     }
+    
     public void infoUser(SingletonConexion x){
        x.toString();
     }
-
     
+    public void mostrarRegistro(){
+        Registro x = new Registro();
+        x.setVisible(true);
+    }
+
+    public void mostrarAdmin(){
+        Admin x = new Admin();
+        x.setVisible(true);
+    }
 }
