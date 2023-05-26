@@ -2,14 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.clinica.clases;
+package com.clinica.model;
 
 /**
  *
  * @author marcosfa
  */
-public class Dentista extends Persona{
-   
-    
+public class ModelRegistro {
     
 }

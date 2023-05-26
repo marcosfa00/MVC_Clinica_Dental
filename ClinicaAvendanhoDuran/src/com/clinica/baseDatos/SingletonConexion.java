@@ -11,10 +11,9 @@ public class SingletonConexion {
     /**
      * Declaramos los tipos de usuariso que queremos
      */
-    public static final int DENTISTA =0; 
-    public static final int RECEPCIONISTA =1; 
+    public static final int USUARIOS =0; 
     //vamos a crear un usuario Admin por si en un futuro queremos añadir elementos como configuración de la base de datos
-    public static final int ADMIN=2;
+    public static final int ADMIN=1;
     
     /**
      * Atributos para realizar la conexión con la base de datos
@@ -40,11 +39,9 @@ public class SingletonConexion {
     private static String getUser(int device){
         
         switch(device){
-            case DENTISTA:
-                return "dentista*dent1";
-               
-            case RECEPCIONISTA:
-                return "recepcion*recep1";
+            case USUARIOS:
+                return "clinica*dent1";
+           
             case ADMIN:
                 return "postgres*postgres";
                
