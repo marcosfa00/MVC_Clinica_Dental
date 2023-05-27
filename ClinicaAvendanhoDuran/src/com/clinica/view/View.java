@@ -5,6 +5,8 @@
 package com.clinica.view;
 
 import com.clinica.baseDatos.SingletonConexion;
+import com.clinica.clases.Trabajador;
+import java.util.ArrayList;
 
 /**
  *
@@ -34,6 +36,15 @@ public class View {
     public static void mostrarAdmin(){
         Admin x = new Admin();
         x.setVisible(true);
+    }
+    
+    public static void mostrarTrabajadores(ArrayList<Trabajador> lista){
+         int i = 0;
+        for (Trabajador trabajador : lista) {
+           
+            i++;
+            System.out.println("Trabajador " + i+": " + trabajador);
+        }
     }
     
    

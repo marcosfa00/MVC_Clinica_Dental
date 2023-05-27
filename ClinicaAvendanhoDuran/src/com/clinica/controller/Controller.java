@@ -20,7 +20,7 @@ import java.util.Scanner;
  */
 public class Controller {
     
-    static View vista = new View();
+   
     static ModelConexion Mconexion = new ModelConexion();
     static ModelLogin modelLog = new ModelLogin();
     
@@ -33,7 +33,7 @@ public class Controller {
     public static void LogIn(String user,String pwd) throws SQLException{
        if( modelLog.loginAdmin(user, pwd)){
            Mconexion.getConexion(ADMIN);
-           vista.mostrarAdmin();
+           View.mostrarAdmin();
        }else if(modelLog.loginAdmin(user, pwd)){
            Mconexion.getConexion(USUARIOS);
            
@@ -62,8 +62,9 @@ public class Controller {
     
     public static void main(String[] args) throws SQLException {
 
-              vista.mostrarLogIn();
-              
+              View.mostrarLogIn();
+             Mconexion.obtenerTrabajadores();
+              System.out.println("hola");
               
               
               
