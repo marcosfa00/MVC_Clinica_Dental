@@ -5,6 +5,9 @@
 package com.clinica.view;
 
 import com.clinica.controller.Controller;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -71,6 +74,11 @@ public class Login extends javax.swing.JFrame {
         btn_abrir_registro.setToolTipText("");
         btn_abrir_registro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         btn_abrir_registro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_abrir_registro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_abrir_registroActionPerformed(evt);
+            }
+        });
 
         lbl_name.setText("Usuario");
 
@@ -154,9 +162,18 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_iniciar_sesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciar_sesionActionPerformed
-        // TODO add your handling code here:
-        Controller.LogIn(txt_user.getText(), txt_password.getText());
+        try {
+            // TODO add your handling code here:
+            Controller.LogIn(txt_user.getText(), txt_password.getText());
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_iniciar_sesionActionPerformed
+
+    private void btn_abrir_registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_abrir_registroActionPerformed
+        // TODO add your handling code here:
+        View.mostrarRegistro();
+    }//GEN-LAST:event_btn_abrir_registroActionPerformed
 
     /**
      * @param args the command line arguments

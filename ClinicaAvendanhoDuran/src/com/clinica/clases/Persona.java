@@ -17,7 +17,7 @@ public class Persona{
     private String nombre;
     private String apellido1;
     private String apellido2;
-    
+    private int edad;
     /**
      * Constructor por defcto
      */
@@ -30,12 +30,14 @@ public class Persona{
      * @param nombre
      * @param apellido1
      * @param apellido2 
+     * @param edad
      */
-    public Persona(String dni,String nombre,String apellido1,String apellido2){
+    public Persona(String dni,String nombre,String apellido1,String apellido2, int edad){
         this.dni = dni;
         this.nombre =nombre;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
+        this.edad = edad; 
     }
     
     

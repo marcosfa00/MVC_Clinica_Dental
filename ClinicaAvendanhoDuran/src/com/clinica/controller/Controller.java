@@ -7,6 +7,7 @@ package com.clinica.controller;
 import com.clinica.baseDatos.SingletonConexion;
 import static com.clinica.baseDatos.SingletonConexion.ADMIN;
 import static com.clinica.baseDatos.SingletonConexion.USUARIOS;
+import com.clinica.excepciones.MyExceptions;
 import com.clinica.model.ModelConexion;
 import com.clinica.model.ModelLogin;
 import com.clinica.view.View;
@@ -47,10 +48,23 @@ public class Controller {
         Mconexion.getConexion(device);
     }
     
+      
+       
+    
+    
+    
+    
+    /**
+     * METODO MAIN
+     * @param args
+     * @throws SQLException 
+     */
     
     public static void main(String[] args) throws SQLException {
 
               vista.mostrarLogIn();
+              
+              
               
               
              
