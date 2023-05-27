@@ -64,7 +64,7 @@ public class Controller {
 
               View.mostrarLogIn();
              Mconexion.obtenerTrabajadores();
-              System.out.println("hola");
+             
               
               
               
