@@ -3,4 +3,4 @@ Main-Class: com.clinica.controller.Controller
 X-COMMENT: Main-Class will be added automatically by build
 JavaFX-Version: 11.0.1
 Class-Path: 
-javafx.deployment.icon=imagenes/logo_diente_icon.png
+
