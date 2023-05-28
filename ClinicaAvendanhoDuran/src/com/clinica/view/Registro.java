@@ -201,6 +201,7 @@ public class Registro extends javax.swing.JFrame {
 
     private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btn_registrarActionPerformed
 
     /**

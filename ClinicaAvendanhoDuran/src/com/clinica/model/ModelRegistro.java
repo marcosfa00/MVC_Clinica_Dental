@@ -10,4 +10,8 @@ package com.clinica.model;
  */
 public class ModelRegistro {
     
+    public static void registroDentista(){
+        
+    }
+    
 }

@@ -4,7 +4,7 @@
  */
 package com.clinica.view;
 
-import com.clinica.baseDatos.SingletonConexion;
+import com.clinica.baseDatos.SConexion;
 import com.clinica.clases.Trabajador;
 import java.util.ArrayList;
 
@@ -24,7 +24,7 @@ public class View {
         x.setVisible(true);
     }
     
-    public static void infoUser(SingletonConexion x){
+    public static void infoUser(SConexion x){
        x.toString();
     }
     

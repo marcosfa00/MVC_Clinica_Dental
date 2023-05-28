@@ -15,9 +15,6 @@ Finalmente pode hacer la conexión con el usuario indicado a la base de datos
 
 ```mermaid
 classDiagram
-    class SingletonConexion {
-        +getInstance(): SingletonConexion
-    }
     class Persona {
         <<abstract>>
         -nombre: String
@@ -33,14 +30,10 @@ classDiagram
         +setTrabajo(trabajo: String): void
     }
     class Controller {
-        +controlar(model: ModelConexion, view: View): void
+        +controlar(model: ModelSConexion, view: View): void
     }
     class muException {
         <<Exception>>
-    }
-    class ModelConexion {
-        +conectar(): void
-        +desconectar(): void
     }
     class ModelDentista {
         +metodo1(): void
@@ -73,20 +66,27 @@ classDiagram
     class Registro {
         <<interface>>
     }
+    class SConexion {
+        +getInstance(): SConexion
+        +conectar(): void
+        +desconectar(): void
+    }
 
-    SingletonConexion --> ModelConexion
     Persona <|-- Trabajador
-    Trabajador o-- SingletonConexion
-    Controller --> ModelConexion
+    Trabajador o-- SConexion
+    Controller --> SConexion
     Controller --> View
-    ModelDentista --> ModelConexion
-    ModelLogin --> ModelConexion
-    ModelRecepcionista --> ModelConexion
-    ModelRegistro --> ModelConexion
+    ModelDentista --> SConexion
+    ModelLogin --> SConexion
+    ModelRecepcionista --> SConexion
+    ModelRegistro --> SConexion
     View --> Admin
     View --> Dentista
     View --> Login
     View --> Registro
+
+
+
 
 
 ```
@@ -98,24 +98,23 @@ classDiagram
 sequenceDiagram
     participant View
     participant Controller
-    participant ModelConexion
+    participant SConexion
     participant Trabajador
     participant Persona
-    participant SingletonConexion
 
     View->>Controller: controlar(model, view)
-    Controller->>ModelConexion: conectar()
-    ModelConexion-->>SingletonConexion: getInstance()
-    SingletonConexion-->>ModelConexion: instancia
-    Controller-->>ModelConexion: instancia
+    Controller->>SConexion: conectar()
+    SConexion-->>Controller: instancia
     Controller->>View: mostrarVentanas()
     View-->>Admin: mostrarVentanas()
     View-->>Dentista: mostrarVentanas()
     View-->>Login: mostrarVentanas()
     View-->>Registro: mostrarVentanas()
-    Controller-->>ModelConexion: desconectar()
-    ModelConexion-->>SingletonConexion: getInstance()
-    SingletonConexion-->>ModelConexion: instancia
+    Controller-->>SConexion: desconectar()
+    SConexion-->>Controller: instancia
+
+
+
 
 
 ````
