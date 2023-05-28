@@ -4,7 +4,9 @@
  */
 package com.clinica.view;
 
-import com.clinica.baseDatos.SingletonConexion;
+import com.clinica.baseDatos.SConexion;
+import com.clinica.clases.Trabajador;
+import java.util.ArrayList;
 
 /**
  *
@@ -12,27 +14,38 @@ import com.clinica.baseDatos.SingletonConexion;
  */
 public class View {
     
-    public void mostrarLogIn(){
+    public static void mostrarLogIn(){
             Login x = new Login();
             x.setVisible(true);
     }
     
-    public void mostrarDentista(){
+    public static void mostrarDentista(){
         Dentista x = new Dentista();
         x.setVisible(true);
     }
     
-    public void infoUser(SingletonConexion x){
+    public static void infoUser(SConexion x){
        x.toString();
     }
     
-    public void mostrarRegistro(){
+    public static void mostrarRegistro(){
         Registro x = new Registro();
         x.setVisible(true);
     }
 
-    public void mostrarAdmin(){
+    public static void mostrarAdmin(){
         Admin x = new Admin();
         x.setVisible(true);
     }
+    
+    public static void mostrarTrabajadores(ArrayList<Trabajador> lista){
+         int i = 0;
+        for (Trabajador trabajador : lista) {
+           
+            i++;
+            System.out.println("Trabajador " + i+": " + trabajador);
+        }
+    }
+    
+   
 }

@@ -4,10 +4,17 @@
  */
 package com.clinica.imagenes;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author marcosfa
  */
 public class icon {
+    /**
+     * Icono de la imagen
+     */
+ ImageIcon icono = new ImageIcon(getClass().getResource("./logo_diente_icon.png"));
+
     
 }

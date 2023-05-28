@@ -4,13 +4,15 @@
  */
 package com.clinica.controller;
 
-import com.clinica.baseDatos.SingletonConexion;
-import static com.clinica.baseDatos.SingletonConexion.ADMIN;
-import static com.clinica.baseDatos.SingletonConexion.USUARIOS;
-import com.clinica.model.ModelConexion;
+import com.clinica.baseDatos.SConexion;
+
+import com.clinica.clases.Trabajador;
+import com.clinica.excepciones.MyExceptions;
+
 import com.clinica.model.ModelLogin;
 import com.clinica.view.View;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -19,8 +21,9 @@ import java.util.Scanner;
  */
 public class Controller {
     
-    static View vista = new View();
-    static ModelConexion Mconexion = new ModelConexion();
+   
+    //static ModelConexion Mconexion = new ModelConexion();
+    static SConexion singleton = SConexion.getInstance();
     static ModelLogin modelLog = new ModelLogin();
     
     /**
@@ -31,11 +34,8 @@ public class Controller {
      */
     public static void LogIn(String user,String pwd) throws SQLException{
        if( modelLog.loginAdmin(user, pwd)){
-           Mconexion.getConexion(ADMIN);
-           vista.mostrarAdmin();
-       }else if(modelLog.loginAdmin(user, pwd)){
-           Mconexion.getConexion(USUARIOS);
-           
+           SConexion.getConexion();
+           View.mostrarAdmin();
        }
        else{
            System.out.println("Error en el log in");
@@ -44,13 +44,32 @@ public class Controller {
     }
     
     public static void getConexion(int device) throws SQLException{
-        Mconexion.getConexion(device);
+        SConexion.getConexion();
     }
     
+    public static void registrar(){
+        
+    }
+    
+      
+       
+    
+    
+    
+    
+    /**
+     * METODO MAIN
+     * @param args
+     * @throws SQLException 
+     */
     
     public static void main(String[] args) throws SQLException {
 
-              vista.mostrarLogIn();
+              View.mostrarLogIn();
+           ArrayList<Trabajador> list = new ArrayList<>();
+           list = singleton.obtenerTrabajadores();
+             
+              
               
               
              
