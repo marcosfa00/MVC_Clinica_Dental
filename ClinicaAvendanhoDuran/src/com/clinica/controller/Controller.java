@@ -10,6 +10,7 @@ import com.clinica.clases.Trabajador;
 import com.clinica.excepciones.MyExceptions;
 
 import com.clinica.model.ModelLogin;
+import com.clinica.model.ModelRegistro;
 import com.clinica.view.View;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,9 +22,8 @@ import java.util.Scanner;
  */
 public class Controller {
     
-   
-    //static ModelConexion Mconexion = new ModelConexion();
-    static SConexion singleton = SConexion.getInstance();
+   static SConexion singleton = SConexion.getInstance();
+  
     static ModelLogin modelLog = new ModelLogin();
     
     /**
@@ -33,10 +33,13 @@ public class Controller {
      * @throws SQLException 
      */
     public static void LogIn(String user,String pwd) throws SQLException{
+        //singleton.trabajadores;
+           
        if( modelLog.loginAdmin(user, pwd)){
-           SConexion.getConexion();
            View.mostrarAdmin();
        }
+           
+       
        else{
            System.out.println("Error en el log in");
        }
@@ -44,13 +47,20 @@ public class Controller {
     }
     
     public static void getConexion(int device) throws SQLException{
-        SConexion.getConexion();
+        singleton.getConexion();
     }
     
-    public static void registrar(){
+    public static void registrar(String dni,String nombre,String apellido,String apellido2,int edad){
+       
+        Trabajador work = new Trabajador(dni,nombre,apellido,apellido2,edad);
         
+        ModelRegistro.Registrar(work);
     }
     
+    public static void cambiarPWD(String dni,String contrasenha){
+        singleton.actualizarContrasenha(dni, contrasenha);
+        View.pwdUpdated();
+    }
       
        
     
@@ -66,9 +76,10 @@ public class Controller {
     public static void main(String[] args) throws SQLException {
 
               View.mostrarLogIn();
-           ArrayList<Trabajador> list = new ArrayList<>();
-           list = singleton.obtenerTrabajadores();
-             
+              
+               singleton.obtenerTrabajadores();
+               
+                
               
               
               
