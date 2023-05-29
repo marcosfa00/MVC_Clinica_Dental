@@ -104,9 +104,11 @@ public class SConexion {
                 String apellido2 = resultSet.getString("apellido2");
                 int edad = resultSet.getInt("edad");
                 String especialidad = resultSet.getString("especialidad");
+                String pwd = resultSet.getString("contrasenha");
 
                 Trabajador trabajador = new Trabajador(dni, nombre, apellido1, apellido2, edad);
                 trabajador.setEspecialidad(especialidad);
+                trabajador.setPwd(pwd);
                 trabajadores.add(trabajador);
             }
 

@@ -12,7 +12,7 @@ import java.util.Random;
  */
 public class Trabajador extends Persona{
    private String especialidad = "Dentista";
-
+   private String pwd ;
     public Trabajador() {
         
     }
@@ -20,6 +20,7 @@ public class Trabajador extends Persona{
     public Trabajador( String dni, String nombre, String apellido1, String apellido2, int edad) {
         super(dni, nombre, apellido1, apellido2, edad);
         this.especialidad = obtenerEspecialidadAleatoria();
+        this.pwd = "123";
     }
 
     public String getEspecialidad() {
@@ -30,6 +31,13 @@ public class Trabajador extends Persona{
         this.especialidad = especialidad;
     }
 
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+    
+    public String getPwd(){
+        return this.pwd;
+    }
 
      public static String obtenerEspecialidadAleatoria() {
         String[] especialidades = {
@@ -47,12 +55,13 @@ public class Trabajador extends Persona{
         
         return especialidades[indiceAleatorio];
     }
-     
+
     @Override
     public String toString() {
-        return super.toString() +"Trabajador{" + "especialidad=" + especialidad + '}';
+        return super.toString()+ especialidad + ", " + pwd ;
     }
-
+     
+  
    
    
     
