@@ -4,6 +4,7 @@
  */
 package com.clinica.view;
 
+import com.clinica.baseDatos.SConexion;
 import com.clinica.controller.Controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -16,11 +17,13 @@ import java.util.logging.Logger;
  * @author marcosfa
  */
 public class Login extends javax.swing.JFrame {
-
+    SConexion singleton =  SConexion.getInstance();
     /**
      * Creates new form Clinica
      */
     public Login() {
+        
+       
         initComponents();
         jLabel2.addMouseListener(new MouseAdapter() {
             @Override
@@ -180,12 +183,13 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_iniciar_sesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_iniciar_sesionActionPerformed
-        try {
-            // TODO add your handling code here:
-            Controller.LogIn(txt_user.getText(), txt_password.getText());
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        
+       
+     Controller.LogIn(txt_user.getText(), txt_password.getText(),singleton.trabajadores);
+
+       
+       
     }//GEN-LAST:event_btn_iniciar_sesionActionPerformed
 
     private void btn_abrir_registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_abrir_registroActionPerformed

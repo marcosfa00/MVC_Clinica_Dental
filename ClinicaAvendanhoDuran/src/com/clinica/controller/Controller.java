@@ -32,17 +32,25 @@ public class Controller {
      * @param pwd
      * @throws SQLException 
      */
-    public static void LogIn(String user,String pwd) throws SQLException{
-        //singleton.trabajadores;
-           
-       if( modelLog.loginAdmin(user, pwd)){
-           View.mostrarAdmin();
-       }
-           
+    public static void LogIn(String user,String pwd, ArrayList<Trabajador> list) {
        
-       else{
-           System.out.println("Error en el log in");
-       }
+           list = singleton.obtenerTrabajadores();
+           Trabajador worker  = new Trabajador();
+         worker=  ModelLogin.loginUser(user, pwd, list);
+         if(worker == null){
+             //throw new MyExceptions().showException("", "");
+             System.out.println("Error al buscar trabajador");
+         }else{
+             if(worker.getEspecialidad().contains("admin")){
+                 System.out.println(worker.getEspecialidad());
+                 View.mostrarAdmin();
+             }else{
+                 View.mostrarDentista();
+                 
+                
+             }
+         }
+      
         
     }
     
@@ -76,8 +84,9 @@ public class Controller {
     public static void main(String[] args) throws SQLException {
 
               View.mostrarLogIn();
-              
-               singleton.obtenerTrabajadores();
+              ArrayList<Trabajador>lista = new ArrayList<>();
+              lista =singleton.obtenerTrabajadores();
+              View.mostrarTrabajadores(lista);
                
                 
               
