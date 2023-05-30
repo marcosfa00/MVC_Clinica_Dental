@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.sql.PreparedStatement;
 
 public class SConexion {
     private static SConexion instance = null;
@@ -23,7 +24,7 @@ public class SConexion {
     private static final String db = "clinicadental";
     private static final String host = "localhost";
     private static final String puerto = "5434";
-    
+    public ArrayList<Trabajador> trabajadores = new ArrayList<>();
     
     
     
@@ -32,14 +33,14 @@ public class SConexion {
         // Constructor privado para evitar la creación de instancias directamente
     }
 
-    public static SConexion getInstance() {
+    public static  SConexion getInstance() {
         if (instance == null) {
             instance = new SConexion();
         }
         return instance;
     }
 
-    public static Connection getConexion() throws SQLException {
+    public  Connection getConexion() throws SQLException {
         if (conexion == null || conexion.isClosed()) {
             try {
                 // Cargar el driver de PostgreSQL
@@ -63,7 +64,7 @@ public class SConexion {
         return conexion;
     }
 
-    private static void mostrarSearchPath(Statement statement) {
+    private  void mostrarSearchPath(Statement statement) {
         try {
             // Crear una consulta para obtener el valor actual del "search_path"
             String sql = "SHOW search_path";
@@ -82,8 +83,8 @@ public class SConexion {
         }
     }
 
-    public ArrayList<Trabajador> obtenerTrabajadores() {
-        ArrayList<Trabajador> trabajadores = new ArrayList<>();
+    public  ArrayList<Trabajador> obtenerTrabajadores() {
+        
 
         try {
             Connection conexion = getConexion();
@@ -103,8 +104,11 @@ public class SConexion {
                 String apellido2 = resultSet.getString("apellido2");
                 int edad = resultSet.getInt("edad");
                 String especialidad = resultSet.getString("especialidad");
+                String pwd = resultSet.getString("contrasenha");
 
-                Trabajador trabajador = new Trabajador(especialidad, dni, nombre, apellido1, apellido2, edad);
+                Trabajador trabajador = new Trabajador(dni, nombre, apellido1, apellido2, edad);
+                trabajador.setEspecialidad(especialidad);
+                trabajador.setPwd(pwd);
                 trabajadores.add(trabajador);
             }
 
@@ -122,4 +126,95 @@ public class SConexion {
 
         return trabajadores;
     }
+    
+    
+    public  void insertarTrabajador(Trabajador trabajador) {
+    try {
+        Connection conexion = (Connection) getConexion();
+
+        // Crear la sentencia SQL para la inserción
+        String sql = "INSERT INTO clinica.trabajadores (dni, nombre, apellido1, apellido2, edad, especialidad) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
+
+        // Preparar la sentencia
+        PreparedStatement statement = conexion.prepareStatement(sql);
+        statement.setString(1, trabajador.getDni());
+        statement.setString(2, trabajador.getNombre());
+        statement.setString(3, trabajador.getApellido1());
+        statement.setString(4, trabajador.getApellido2());
+        statement.setInt(5, trabajador.getEdad());
+        statement.setString(6, trabajador.getEspecialidad());
+
+        // Ejecutar la sentencia
+        int filasAfectadas = statement.executeUpdate();
+
+        // Cerrar el PreparedStatement y la conexión después de usarlos
+        statement.close();
+        conexion.close();
+
+        if (filasAfectadas > 0) {
+            System.out.println("Inserción exitosa");
+        } else {
+            System.out.println("Error al insertar el trabajador");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    
+    }
+    
+    
+    
+    public void actualizarContrasenha(String dni, String contrasenha) {
+    try {
+        Connection conexion = getConexion();
+
+        // Crear una sentencia SQL para actualizar la contraseña del trabajador
+        String sql = "UPDATE clinica.trabajadores SET contrasenha = ? WHERE dni = ?";
+        PreparedStatement statement = conexion.prepareStatement(sql);
+
+        // Establecer los valores de los parámetros en la sentencia SQL
+        statement.setString(1, contrasenha);
+        statement.setString(2, dni);
+
+        // Ejecutar la consulta SQL para actualizar la contraseña
+        int filasAfectadas = statement.executeUpdate();
+
+        // Verificar si se actualizó correctamente la contraseña
+        if (filasAfectadas > 0) {
+            System.out.println("Contraseña actualizada correctamente");
+        } else {
+            System.out.println("No se pudo actualizar la contraseña");
+        }
+
+        // Cerrar el Statement y la conexión después de usarlos
+        statement.close();
+        conexion.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

@@ -202,6 +202,8 @@ public class Registro extends javax.swing.JFrame {
     private void btn_registrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_registrarActionPerformed
         // TODO add your handling code here:
         
+        Controller.registrar(txt_dni_reg.getText(), txt_nombre.getText(), txt_apellido1.getText(), txt_apellido2.getText(), Integer.parseInt(txt_edad.getText()));
+        
     }//GEN-LAST:event_btn_registrarActionPerformed
 
     /**

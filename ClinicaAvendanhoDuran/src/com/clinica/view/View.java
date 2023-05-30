@@ -47,5 +47,13 @@ public class View {
         }
     }
     
+    public static void mostrarActualizarP(){
+         UpdatePWD x = new UpdatePWD();
+        x.setVisible(true);
+    }
+    
+    public static void pwdUpdated(){
+        System.out.println("Joptionpane actualizado");
+    }
    
 }
