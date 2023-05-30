@@ -117,8 +117,6 @@ public class SConexion {
             statement.close();
             conexion.close();
 
-            System.out.println("\nLISTA ACTUAL DE TRABAJADORES: \n");
-            View.mostrarTrabajadores(trabajadores);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -133,8 +131,8 @@ public class SConexion {
         Connection conexion = (Connection) getConexion();
 
         // Crear la sentencia SQL para la inserción
-        String sql = "INSERT INTO clinica.trabajadores (dni, nombre, apellido1, apellido2, edad, especialidad) "
-                + "VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO clinica.trabajadores (dni, nombre, apellido1, apellido2, edad, especialidad, contrasenha) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         // Preparar la sentencia
         PreparedStatement statement = conexion.prepareStatement(sql);
@@ -144,6 +142,7 @@ public class SConexion {
         statement.setString(4, trabajador.getApellido2());
         statement.setInt(5, trabajador.getEdad());
         statement.setString(6, trabajador.getEspecialidad());
+        statement.setString(7, trabajador.getPwd());
 
         // Ejecutar la sentencia
         int filasAfectadas = statement.executeUpdate();

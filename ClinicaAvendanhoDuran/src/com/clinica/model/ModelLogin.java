@@ -14,30 +14,26 @@ import java.util.ArrayList;
 public class ModelLogin {
     
     
-    public Boolean loginAdmin(String user,String pwd){
-        
-        if (user.contains("postgres")&& pwd.contains("123")) {
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
+   
     
     /**
      * Método para devolver el trabajador conectado a la base de datos
-     * @param user
-     * @param pwd
-     * @param lista
-     * @return 
+     * @param user USUARIO ESCRITO
+     * @param pwd CONTRASEÑA ESCRITA
+     * @param lista QUE CONTIENE TODOS LOS TRABAJADORES
+     * @return Boolean
      */
-    public Boolean loginUser(String user,String pwd, ArrayList<Trabajador> lista){
-        
-       
-        return true;
-        
-        
+   public static Trabajador loginUser(String user, String pwd, ArrayList<Trabajador> lista) {
+    for (Trabajador trabajador : lista) {
+        if (trabajador.getDni().equals(user) && trabajador.getPwd().equals(pwd)) {
+           return trabajador;
+        }
     }
+    
+    return null; // No se encontró ningún trabajador con las credenciales proporcionadas
+}
+
+
     
     
 }
