@@ -17,14 +17,16 @@ import java.util.logging.Logger;
  * @author marcosfa
  */
 public class Login extends javax.swing.JFrame {
-    SConexion singleton =  SConexion.getInstance();
+    
     /**
      * Creates new form Clinica
      */
+    SConexion singleton =  SConexion.getInstance();
     public Login() {
         
        
         initComponents();
+        
         jLabel2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
