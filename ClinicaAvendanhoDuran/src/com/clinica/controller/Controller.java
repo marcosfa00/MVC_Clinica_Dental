@@ -5,9 +5,11 @@
 package com.clinica.controller;
 
 import com.clinica.baseDatos.SConexion;
+import com.clinica.clases.Paciente;
 
 import com.clinica.clases.Trabajador;
 import com.clinica.excepciones.MyExceptions;
+import com.clinica.model.ModelDentista;
 
 import com.clinica.model.ModelLogin;
 import com.clinica.model.ModelRegistro;
@@ -15,6 +17,7 @@ import com.clinica.view.View;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.JTable;
 
 /**
  *
@@ -71,7 +74,11 @@ public class Controller {
     }
       
        
-    
+    public static void mostrarPaciente( JTable tabla ){
+     
+       View.mostrarPacientesEnTabla(singleton.getPacientes(), tabla);
+       
+    }
     
     
     

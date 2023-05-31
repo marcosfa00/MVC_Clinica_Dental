@@ -8,6 +8,7 @@ package com.clinica.baseDatos;
  *
  * @author marcosfa
  */
+import com.clinica.clases.Paciente;
 import com.clinica.clases.Trabajador;
 import com.clinica.view.View;
 import java.sql.Connection;
@@ -195,7 +196,41 @@ public class SConexion {
 }
 
     
-    
+   public ArrayList<Paciente> getPacientes() {
+    ArrayList<Paciente> pacientes = new ArrayList<>();
+    try {
+        Connection conexion = getConexion();
+
+        // Crear una sentencia SQL para buscar los pacientes
+        String sql = "SELECT * FROM clinica.pacientes";
+        PreparedStatement statement = conexion.prepareStatement(sql);
+
+        // Ejecutar la consulta SQL
+        ResultSet resultSet = statement.executeQuery();
+
+        // Recorrer el resultado y construir la lista de pacientes
+        while (resultSet.next()) {
+            String dni = resultSet.getString("dni");
+            String nombre = resultSet.getString("nombre");
+            String apellido1 = resultSet.getString("apellido1");
+            String apellido2 = resultSet.getString("apellido2");
+            int edad = resultSet.getInt("edad");
+
+            Paciente paciente = new Paciente(dni, nombre, apellido1, apellido2, edad);
+            pacientes.add(paciente);
+        }
+
+        // Cerrar el ResultSet, el PreparedStatement y la conexión después de usarlos
+        resultSet.close();
+        statement.close();
+        conexion.close();
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return pacientes;
+}
+
+
     
     
     

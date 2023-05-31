@@ -4,10 +4,16 @@
  */
 package com.clinica.model;
 
+import com.clinica.baseDatos.SConexion;
+import com.clinica.clases.Paciente;
+
 /**
  *
  * @author marcosfa
  */
 public class ModelDentista {
+    static SConexion singleton = SConexion.getInstance();
+    
+  
     
 }

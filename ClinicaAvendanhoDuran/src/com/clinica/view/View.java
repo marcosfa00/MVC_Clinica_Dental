@@ -5,8 +5,11 @@
 package com.clinica.view;
 
 import com.clinica.baseDatos.SConexion;
+import com.clinica.clases.Paciente;
 import com.clinica.clases.Trabajador;
 import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -56,4 +59,29 @@ public class View {
         System.out.println("Joptionpane actualizado");
     }
    
+    
+    public static void mostrarPacientesEnTabla(ArrayList<Paciente> pacientes, JTable tabla) {
+    DefaultTableModel modelo = new DefaultTableModel();
+    modelo.addColumn("DNI");
+    modelo.addColumn("Nombre");
+    modelo.addColumn("Apellido1");
+    modelo.addColumn("Apellido2");
+    modelo.addColumn("Edad");
+
+    for (Paciente paciente : pacientes) {
+        Object[] fila = new Object[5];
+        fila[0] = paciente.getDni();
+        fila[1] = paciente.getNombre();
+        fila[2] = paciente.getApellido1();
+        fila[3] = paciente.getApellido2();
+        fila[4] = paciente.getEdad();
+        modelo.addRow(fila);
+    }
+
+    tabla.setModel(modelo);
+}
+    
+    
+    
+
 }
