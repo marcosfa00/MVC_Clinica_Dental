@@ -18,6 +18,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class SConexion {
     private static SConexion instance = null;
@@ -231,11 +233,68 @@ public class SConexion {
 }
 
 
-    
-    
-    
-    
-    
+   public void mostrarHistorialMedico(String dni, JTable tabla) {
+    Connection conexion = null;
+    PreparedStatement statement = null;
+    ResultSet resultSet = null;
+
+    try {
+        conexion = getConexion();
+
+        // Crear una sentencia SQL para obtener el historial médico del paciente sin el campo "ID"
+        String sql = "SELECT dni_paciente, fecha, descripcion FROM clinica.historial_medico WHERE dni_paciente = ?";
+        statement = conexion.prepareStatement(sql);
+        statement.setString(1, dni);
+
+        resultSet = statement.executeQuery();
+
+        // Crear modelo de tabla y establecerlo en la JTable
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("DNI Paciente");
+        model.addColumn("Fecha");
+        model.addColumn("Descripción");
+
+        while (resultSet.next()) {
+            String dniPaciente = resultSet.getString("dni_paciente");
+            String fecha = resultSet.getString("fecha");
+            String descripcion = resultSet.getString("descripcion");
+
+            // Agregar fila al modelo de tabla
+            model.addRow(new Object[]{dniPaciente, fecha, descripcion});
+        }
+
+        // Establecer el modelo de tabla en la JTable
+        tabla.setModel(model);
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        // Cerrar recursos en orden inverso
+        if (resultSet != null) {
+            try {
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (statement != null) {
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (conexion != null) {
+            try {
+                conexion.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+
     
     
     

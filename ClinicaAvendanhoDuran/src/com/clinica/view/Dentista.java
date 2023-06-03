@@ -5,6 +5,8 @@
 package com.clinica.view;
 
 import com.clinica.controller.Controller;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -18,6 +20,25 @@ public class Dentista extends javax.swing.JFrame {
     public Dentista() {
         initComponents();
         Controller.mostrarPaciente( jTable1_pacientes);
+        
+        // Agregar MouseListener a la JTable
+jTable1_pacientes.addMouseListener(new MouseAdapter() {
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (e.getClickCount() == 1) { // Detectar un solo clic
+            int filaSeleccionada = jTable1_pacientes.getSelectedRow();
+            if (filaSeleccionada != -1) { // Verificar si se ha seleccionado una fila
+                String dni = jTable1_pacientes.getValueAt(filaSeleccionada, 0).toString();
+              
+                Controller.mostrarHistorialMedico(dni, jTable1_Historial);
+              
+                
+            }
+        }
+    }
+});
+
+        
     }
 
     /**
@@ -40,7 +61,8 @@ public class Dentista extends javax.swing.JFrame {
         jTable1_pacientes = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable1_Historial = new javax.swing.JTable();
+        btn_nuevo_tratamiento = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -81,18 +103,20 @@ public class Dentista extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(60, 63, 65));
         jLabel4.setText("HISTORIAL:");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1_Historial.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "DNI", "FECHA", "TRATAMIENTO"
             }
         ));
-        jScrollPane3.setViewportView(jTable1);
+        jScrollPane3.setViewportView(jTable1_Historial);
+
+        btn_nuevo_tratamiento.setText("NUEVO TRATAMIENTO");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -122,14 +146,16 @@ public class Dentista extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(txt_dni_dentista, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(86, 86, 86)
-                                        .addComponent(btn_buscar)))
-                                .addGap(509, 509, 509))))
+                                        .addComponent(btn_buscar)
+                                        .addGap(49, 49, 49)
+                                        .addComponent(btn_nuevo_tratamiento)))
+                                .addGap(382, 382, 382))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel4))
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -148,7 +174,8 @@ public class Dentista extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_dni_dentista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_buscar))
+                    .addComponent(btn_buscar)
+                    .addComponent(btn_nuevo_tratamiento))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -163,7 +190,7 @@ public class Dentista extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 833, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 996, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -176,6 +203,7 @@ public class Dentista extends javax.swing.JFrame {
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         // TODO add your handling code here:
+        Controller.mostrarHistorialMedico(txt_dni_dentista.getText(), jTable1_Historial);
         
     }//GEN-LAST:event_btn_buscarActionPerformed
 
@@ -216,6 +244,7 @@ public class Dentista extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_buscar;
+    private javax.swing.JButton btn_nuevo_tratamiento;
     private javax.swing.JLabel icono;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -224,7 +253,7 @@ public class Dentista extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable1_Historial;
     private javax.swing.JTable jTable1_pacientes;
     private javax.swing.JTextField txt_dni_dentista;
     // End of variables declaration//GEN-END:variables

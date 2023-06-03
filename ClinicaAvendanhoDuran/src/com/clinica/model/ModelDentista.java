@@ -6,6 +6,7 @@ package com.clinica.model;
 
 import com.clinica.baseDatos.SConexion;
 import com.clinica.clases.Paciente;
+import javax.swing.JTable;
 
 /**
  *
@@ -14,6 +15,8 @@ import com.clinica.clases.Paciente;
 public class ModelDentista {
     static SConexion singleton = SConexion.getInstance();
     
-  
+  public static void mostrarHistorialMedico(String dni, JTable tabla){
+      singleton.mostrarHistorialMedico(dni, tabla);
+  }
     
 }

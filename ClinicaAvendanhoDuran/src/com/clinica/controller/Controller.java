@@ -80,7 +80,9 @@ public class Controller {
        
     }
     
-    
+    public static void mostrarHistorialMedico(String dni, JTable tabla){
+        ModelDentista.mostrarHistorialMedico(dni, tabla);
+    }
     
     /**
      * METODO MAIN
@@ -91,6 +93,8 @@ public class Controller {
     public static void main(String[] args) throws SQLException {
 
               View.mostrarLogIn();
+              
+              
               ArrayList<Trabajador>lista = new ArrayList<>();
               lista =singleton.obtenerTrabajadores();
               View.mostrarTrabajadores(lista);
