@@ -195,7 +195,7 @@ public class Registro extends javax.swing.JFrame {
 
     private void btn_volverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_volverActionPerformed
         // TODO add your handling code here:
-        View.mostrarLogIn();
+        View.mostrarAdmin();
         this.dispose();
     }//GEN-LAST:event_btn_volverActionPerformed
 

@@ -132,7 +132,7 @@ public class SConexion {
             Connection conexion = (Connection) getConexion();
 
             // Crear la sentencia SQL para la inserción
-            String sql = "INSERT INTO clinica.trabajadores (dni, nombre, apellido1, apellido2, edad, especialidad, contrasenha) "
+            String sql = "INSERT INTO clinica.trabajadores (dni, nombre, apellido1, apellido2, edad, especialidad, contraseña) " // estaba mal, ponia contrasenha
                     + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             // Preparar la sentencia
@@ -226,7 +226,6 @@ public class SConexion {
         }
         return pacientes;
     }
-    
 
     public void mostrarHistorialMedico(String dni, JTable tabla) {
         Connection conexion = null;
@@ -256,6 +255,70 @@ public class SConexion {
 
                 // Agregar fila al modelo de tabla
                 model.addRow(new Object[]{dniPaciente, fecha, descripcion});
+            }
+
+            // Establecer el modelo de tabla en la JTable
+            tabla.setModel(model);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Cerrar recursos en orden inverso
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (conexion != null) {
+                try {
+                    conexion.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void mostrarHistorialTrabajadores(String dni, JTable tabla) {
+        Connection conexion = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            conexion = getConexion();
+
+            // Crear una sentencia SQL para obtener el historial médico del paciente sin el campo "ID"
+            String sql = "SELECT dni, nombre, especialidad, contraseña FROM clinica.trabajadores WHERE dni = ?";
+            statement = conexion.prepareStatement(sql);
+            statement.setString(1, dni);
+
+            resultSet = statement.executeQuery();
+
+            // Crear modelo de tabla y establecerlo en la JTable
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("DNI");
+            model.addColumn("Nombre");
+            model.addColumn("Especialidad");
+            model.addColumn("Contraseña");
+
+            while (resultSet.next()) {
+                String dniTrabajador = resultSet.getString("dni");
+                String nombre = resultSet.getString("nombre");
+                String especialidad = resultSet.getString("especialidad");
+                String contrasenha = resultSet.getString("contraseña");
+
+                // Agregar fila al modelo de tabla
+                model.addRow(new Object[]{dniTrabajador, nombre, especialidad,contrasenha});
             }
 
             // Establecer el modelo de tabla en la JTable

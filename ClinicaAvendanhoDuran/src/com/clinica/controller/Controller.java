@@ -13,6 +13,7 @@ import com.clinica.model.ModelDentista;
 
 import com.clinica.model.ModelLogin;
 import com.clinica.model.ModelRegistro;
+import com.clinica.model.ModelTrabajadores;
 import com.clinica.view.View;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -60,11 +61,19 @@ public class Controller {
         
     }
     
+    
     public static void getConexion(int device) throws SQLException{
         singleton.getConexion();
     }
     
     public static void registrar(String dni,String nombre,String apellido,String apellido2,int edad){
+       
+        Trabajador work = new Trabajador(dni,nombre,apellido,apellido2,edad);
+        
+        ModelRegistro.Registrar(work);
+    }
+    
+    public static void registrarTrabajdores(String dni,String nombre,String apellido,String apellido2,int edad, String especialidad, String contrasenha){
        
         Trabajador work = new Trabajador(dni,nombre,apellido,apellido2,edad);
         
@@ -90,6 +99,10 @@ public class Controller {
     
     public static void mostrarHistorialMedico(String dni, JTable tabla){
         ModelDentista.mostrarHistorialMedico(dni, tabla);
+    }
+    
+    public static void mostrarHistorialTrabajadores(String dni, JTable tabla){
+        ModelTrabajadores.mostrarHistorialTrabajadores(dni, tabla);
     }
     
     /**

@@ -33,17 +33,17 @@ public class Admin extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         icono1 = new javax.swing.JLabel();
-        txt_dni_trabajador = new javax.swing.JTextField();
+        txt_user_trabajador = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btn_buscar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTable1_Historial = new javax.swing.JTable();
         btn_despedir = new javax.swing.JButton();
         btn_contratar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1_trabajadores = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1_Historial = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -54,7 +54,7 @@ public class Admin extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("DENTISTA");
+        jLabel2.setText("ADMINISTRACION");
 
         icono1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/clinica/imagenes/logo_diente_pq.png"))); // NOI18N
 
@@ -73,19 +73,6 @@ public class Admin extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(60, 63, 65));
         jLabel5.setText("HISTORIAL:");
 
-        jTable1_Historial.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "NOMBRE", "USUARIO", "CONTRASEÑA", "ESPECIALIDAD"
-            }
-        ));
-        jScrollPane5.setViewportView(jTable1_Historial);
-
         btn_despedir.setBackground(new java.awt.Color(255, 0, 0));
         btn_despedir.setForeground(new java.awt.Color(255, 255, 255));
         btn_despedir.setText("DESPEDIR");
@@ -93,6 +80,11 @@ public class Admin extends javax.swing.JFrame {
         btn_contratar.setBackground(new java.awt.Color(51, 204, 0));
         btn_contratar.setForeground(new java.awt.Color(255, 255, 255));
         btn_contratar.setText("CONTRATAR");
+        btn_contratar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_contratarActionPerformed(evt);
+            }
+        });
 
         jTable1_trabajadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,6 +98,19 @@ public class Admin extends javax.swing.JFrame {
             }
         ));
         jScrollPane2.setViewportView(jTable1_trabajadores);
+
+        jTable1_Historial.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "DNI", "Nombre", "Especialidad", "Contraseña"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable1_Historial);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -130,7 +135,7 @@ public class Admin extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(txt_dni_trabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txt_user_trabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(46, 46, 46)
                                         .addComponent(btn_buscar)
                                         .addGap(18, 18, 18)
@@ -142,8 +147,8 @@ public class Admin extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btn_despedir)
-                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 534, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_despedir))))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -161,16 +166,16 @@ public class Admin extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_dni_trabajador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_user_trabajador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_buscar)
                     .addComponent(btn_contratar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addComponent(btn_despedir)
                 .addGap(14, 14, 14))
         );
@@ -208,9 +213,13 @@ public class Admin extends javax.swing.JFrame {
     
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         // TODO add your handling code here:
-        Controller.mostrarHistorialMedico(txt_dni_trabajador.getText(), jTable1_Historial);
+        Controller.mostrarHistorialTrabajadores(txt_user_trabajador.getText(), jTable1_Historial);
 
     }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void btn_contratarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_contratarActionPerformed
+        View.mostrarRegistro();
+    }//GEN-LAST:event_btn_contratarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -260,9 +269,9 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1_Historial;
     private javax.swing.JTable jTable1_trabajadores;
-    private javax.swing.JTextField txt_dni_trabajador;
+    private javax.swing.JTextField txt_user_trabajador;
     // End of variables declaration//GEN-END:variables
 }
