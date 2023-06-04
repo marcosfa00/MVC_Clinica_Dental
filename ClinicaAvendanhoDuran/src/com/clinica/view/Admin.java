@@ -5,19 +5,19 @@
 package com.clinica.view;
 
 import com.clinica.controller.Controller;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author marcosfa
  */
 public class Admin extends javax.swing.JFrame {
-
     /**
      * Creates new form Admin
      */
     public Admin() {
         initComponents();
-        
+        Controller.mostrarTrabajadores(jTable1_trabajadores);
     }
 
     /**
@@ -37,13 +37,13 @@ public class Admin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         btn_buscar = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable1_administradores = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable1_Historial = new javax.swing.JTable();
         btn_despedir = new javax.swing.JButton();
         btn_contratar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1_trabajadores = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -68,19 +68,6 @@ public class Admin extends javax.swing.JFrame {
                 btn_buscarActionPerformed(evt);
             }
         });
-
-        jTable1_administradores.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "DNI", "Nombre", "Apellidos", "Edad"
-            }
-        ));
-        jScrollPane4.setViewportView(jTable1_administradores);
 
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(60, 63, 65));
@@ -107,6 +94,19 @@ public class Admin extends javax.swing.JFrame {
         btn_contratar.setForeground(new java.awt.Color(255, 255, 255));
         btn_contratar.setText("CONTRATAR");
 
+        jTable1_trabajadores.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "DNI", "Nombre", "Apellidos", "Edad"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1_trabajadores);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -114,8 +114,8 @@ public class Admin extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(icono1))
+                    .addComponent(icono1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -151,8 +151,8 @@ public class Admin extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(icono1)
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
@@ -205,7 +205,7 @@ public class Admin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         // TODO add your handling code here:
         Controller.mostrarHistorialMedico(txt_dni_trabajador.getText(), jTable1_Historial);
@@ -246,6 +246,7 @@ public class Admin extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_buscar;
@@ -258,10 +259,10 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTable jTable1_Historial;
-    private javax.swing.JTable jTable1_administradores;
+    private javax.swing.JTable jTable1_trabajadores;
     private javax.swing.JTextField txt_dni_trabajador;
     // End of variables declaration//GEN-END:variables
 }

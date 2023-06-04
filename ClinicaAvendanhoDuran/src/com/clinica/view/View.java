@@ -81,6 +81,28 @@ public class View {
     tabla.setModel(modelo);
 }
     
+    /**
+     * muestra los trabajadores en la tabla
+     * @param pacientes
+     * @param tabla 
+     */
+    public static void mostrarTrabajadoresTabla(ArrayList<Trabajador> trabajadores, JTable tabla) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("DNI");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Edad");
+
+        for (Trabajador trabajador : trabajadores) {
+            Object[] fila = new Object[4];
+            fila[0] = trabajador.getDni();
+            fila[1] = trabajador.getNombre();
+            fila[2] = trabajador.getApellido1();
+            fila[3] = trabajador.getEdad();
+            modelo.addRow(fila);
+        }
+        tabla.setModel(modelo);
+    }
     
     
 

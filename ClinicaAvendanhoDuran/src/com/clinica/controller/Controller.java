@@ -37,18 +37,21 @@ public class Controller {
      */
     public static void LogIn(String user,String pwd, ArrayList<Trabajador> list) {
        
-           list = singleton.obtenerTrabajadores();
+           list = singleton.trabajadores;
            Trabajador worker  = new Trabajador();
          worker=  ModelLogin.loginUser(user, pwd, list);
          if(worker == null){
              //throw new MyExceptions().showException("", "");
              System.out.println("Error al buscar trabajador");
          }else{
-             if(worker.getEspecialidad().contains("admin")){
+             if(worker.getEspecialidad().contains("Admin")){
                  System.out.println(worker.getEspecialidad());
                  View.mostrarAdmin();
+                 System.out.println("Se ejecuta vista de admin");
              }else{
                  View.mostrarDentista();
+                System.out.println("No se ejecuta vista de admin");
+
                  
                 
              }
@@ -80,6 +83,11 @@ public class Controller {
        
     }
     
+    public static void mostrarTrabajadores(JTable tabla){
+        View.mostrarTrabajadoresTabla(singleton.trabajadores, tabla);
+        //View.mostrarPacientesEnTabla(singleton.getPacientes(), tabla);
+    }
+    
     public static void mostrarHistorialMedico(String dni, JTable tabla){
         ModelDentista.mostrarHistorialMedico(dni, tabla);
     }
@@ -96,7 +104,7 @@ public class Controller {
               
               
               ArrayList<Trabajador>lista = new ArrayList<>();
-              lista =singleton.obtenerTrabajadores();
+              lista =singleton.getTrabajadores();
               View.mostrarTrabajadores(lista);
                
                 

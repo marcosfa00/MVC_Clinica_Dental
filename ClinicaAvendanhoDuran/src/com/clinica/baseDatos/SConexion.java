@@ -22,28 +22,26 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class SConexion {
+
     private static SConexion instance = null;
     private static Connection conexion = null;
     private static final String db = "clinicadental";
     private static final String host = "localhost";
     private static final String puerto = "5432";//la cambio, sino no deja
     public ArrayList<Trabajador> trabajadores = new ArrayList<>();
-    
-    
-    
-    
-      private SConexion() {
+
+    private SConexion() {
         // Constructor privado para evitar la creación de instancias directamente
     }
 
-    public static  SConexion getInstance() {
+    public static SConexion getInstance() {
         if (instance == null) {
             instance = new SConexion();
         }
         return instance;
     }
 
-    public  Connection getConexion() throws SQLException {
+    public Connection getConexion() throws SQLException {
         if (conexion == null || conexion.isClosed()) {
             try {
                 // Cargar el driver de PostgreSQL
@@ -67,7 +65,7 @@ public class SConexion {
         return conexion;
     }
 
-    private  void mostrarSearchPath(Statement statement) {
+    private void mostrarSearchPath(Statement statement) {
         try {
             // Crear una consulta para obtener el valor actual del "search_path"
             String sql = "SHOW search_path";
@@ -86,8 +84,7 @@ public class SConexion {
         }
     }
 
-    public  ArrayList<Trabajador> obtenerTrabajadores() {
-        
+    public ArrayList<Trabajador> getTrabajadores() {
 
         try {
             Connection conexion = getConexion();
@@ -100,6 +97,7 @@ public class SConexion {
             ResultSet resultSet = statement.executeQuery(sql);
 
             // Recorrer el resultado y construir la lista de trabajadores
+            int i = 0;
             while (resultSet.next()) {
                 String dni = resultSet.getString("dni");
                 String nombre = resultSet.getString("nombre");
@@ -112,6 +110,8 @@ public class SConexion {
                 Trabajador trabajador = new Trabajador(dni, nombre, apellido1, apellido2, edad);
                 trabajador.setEspecialidad(especialidad);
                 trabajador.setPwd(pwd);
+                System.out.println("vuelta = " + i);
+                i++;
                 trabajadores.add(trabajador);
             }
 
@@ -120,194 +120,174 @@ public class SConexion {
             statement.close();
             conexion.close();
 
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return trabajadores;
     }
-    
-    
-    public  void insertarTrabajador(Trabajador trabajador) {
-    try {
-        Connection conexion = (Connection) getConexion();
 
-        // Crear la sentencia SQL para la inserción
-        String sql = "INSERT INTO clinica.trabajadores (dni, nombre, apellido1, apellido2, edad, especialidad, contrasenha) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+    public void insertarTrabajador(Trabajador trabajador) {
+        try {
+            Connection conexion = (Connection) getConexion();
 
-        // Preparar la sentencia
-        PreparedStatement statement = conexion.prepareStatement(sql);
-        statement.setString(1, trabajador.getDni());
-        statement.setString(2, trabajador.getNombre());
-        statement.setString(3, trabajador.getApellido1());
-        statement.setString(4, trabajador.getApellido2());
-        statement.setInt(5, trabajador.getEdad());
-        statement.setString(6, trabajador.getEspecialidad());
-        statement.setString(7, trabajador.getPwd());
+            // Crear la sentencia SQL para la inserción
+            String sql = "INSERT INTO clinica.trabajadores (dni, nombre, apellido1, apellido2, edad, especialidad, contrasenha) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        // Ejecutar la sentencia
-        int filasAfectadas = statement.executeUpdate();
+            // Preparar la sentencia
+            PreparedStatement statement = conexion.prepareStatement(sql);
+            statement.setString(1, trabajador.getDni());
+            statement.setString(2, trabajador.getNombre());
+            statement.setString(3, trabajador.getApellido1());
+            statement.setString(4, trabajador.getApellido2());
+            statement.setInt(5, trabajador.getEdad());
+            statement.setString(6, trabajador.getEspecialidad());
+            statement.setString(7, trabajador.getPwd());
 
-        // Cerrar el PreparedStatement y la conexión después de usarlos
-        statement.close();
-        conexion.close();
+            // Ejecutar la sentencia
+            int filasAfectadas = statement.executeUpdate();
 
-        if (filasAfectadas > 0) {
-            System.out.println("Inserción exitosa");
-        } else {
-            System.out.println("Error al insertar el trabajador");
+            // Cerrar el PreparedStatement y la conexión después de usarlos
+            statement.close();
+            conexion.close();
+
+            if (filasAfectadas > 0) {
+                System.out.println("Inserción exitosa");
+            } else {
+                System.out.println("Error al insertar el trabajador");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
+
     }
-    
-    }
-    
-    
-    
+
     public void actualizarContrasenha(String dni, String contrasenha) {
-    try {
-        Connection conexion = getConexion();
+        try {
+            Connection conexion = getConexion();
 
-        // Crear una sentencia SQL para actualizar la contraseña del trabajador
-        String sql = "UPDATE clinica.trabajadores SET contrasenha = ? WHERE dni = ?";
-        PreparedStatement statement = conexion.prepareStatement(sql);
+            // Crear una sentencia SQL para actualizar la contraseña del trabajador
+            String sql = "UPDATE clinica.trabajadores SET contrasenha = ? WHERE dni = ?";
+            PreparedStatement statement = conexion.prepareStatement(sql);
 
-        // Establecer los valores de los parámetros en la sentencia SQL
-        statement.setString(1, contrasenha);
-        statement.setString(2, dni);
+            // Establecer los valores de los parámetros en la sentencia SQL
+            statement.setString(1, contrasenha);
+            statement.setString(2, dni);
 
-        // Ejecutar la consulta SQL para actualizar la contraseña
-        int filasAfectadas = statement.executeUpdate();
+            // Ejecutar la consulta SQL para actualizar la contraseña
+            int filasAfectadas = statement.executeUpdate();
 
-        // Verificar si se actualizó correctamente la contraseña
-        if (filasAfectadas > 0) {
-            System.out.println("Contraseña actualizada correctamente");
-        } else {
-            System.out.println("No se pudo actualizar la contraseña");
-        }
-
-        // Cerrar el Statement y la conexión después de usarlos
-        statement.close();
-        conexion.close();
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-}
-
-    
-   public ArrayList<Paciente> getPacientes() {
-    ArrayList<Paciente> pacientes = new ArrayList<>();
-    try {
-        Connection conexion = getConexion();
-
-        // Crear una sentencia SQL para buscar los pacientes
-        String sql = "SELECT * FROM clinica.pacientes";
-        PreparedStatement statement = conexion.prepareStatement(sql);
-
-        // Ejecutar la consulta SQL
-        ResultSet resultSet = statement.executeQuery();
-
-        // Recorrer el resultado y construir la lista de pacientes
-        while (resultSet.next()) {
-            String dni = resultSet.getString("dni");
-            String nombre = resultSet.getString("nombre");
-            String apellido1 = resultSet.getString("apellido1");
-            String apellido2 = resultSet.getString("apellido2");
-            int edad = resultSet.getInt("edad");
-
-            Paciente paciente = new Paciente(dni, nombre, apellido1, apellido2, edad);
-            pacientes.add(paciente);
-        }
-
-        // Cerrar el ResultSet, el PreparedStatement y la conexión después de usarlos
-        resultSet.close();
-        statement.close();
-        conexion.close();
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-    return pacientes;
-}
-
-
-   public void mostrarHistorialMedico(String dni, JTable tabla) {
-    Connection conexion = null;
-    PreparedStatement statement = null;
-    ResultSet resultSet = null;
-
-    try {
-        conexion = getConexion();
-
-        // Crear una sentencia SQL para obtener el historial médico del paciente sin el campo "ID"
-        String sql = "SELECT dni_paciente, fecha, descripcion FROM clinica.historial_medico WHERE dni_paciente = ?";
-        statement = conexion.prepareStatement(sql);
-        statement.setString(1, dni);
-
-        resultSet = statement.executeQuery();
-
-        // Crear modelo de tabla y establecerlo en la JTable
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("DNI Paciente");
-        model.addColumn("Fecha");
-        model.addColumn("Descripción");
-
-        while (resultSet.next()) {
-            String dniPaciente = resultSet.getString("dni_paciente");
-            String fecha = resultSet.getString("fecha");
-            String descripcion = resultSet.getString("descripcion");
-
-            // Agregar fila al modelo de tabla
-            model.addRow(new Object[]{dniPaciente, fecha, descripcion});
-        }
-
-        // Establecer el modelo de tabla en la JTable
-        tabla.setModel(model);
-    } catch (SQLException e) {
-        e.printStackTrace();
-    } finally {
-        // Cerrar recursos en orden inverso
-        if (resultSet != null) {
-            try {
-                resultSet.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            // Verificar si se actualizó correctamente la contraseña
+            if (filasAfectadas > 0) {
+                System.out.println("Contraseña actualizada correctamente");
+            } else {
+                System.out.println("No se pudo actualizar la contraseña");
             }
-        }
 
-        if (statement != null) {
-            try {
-                statement.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        if (conexion != null) {
-            try {
-                conexion.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            // Cerrar el Statement y la conexión después de usarlos
+            statement.close();
+            conexion.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
-}
 
+    public ArrayList<Paciente> getPacientes() {
+        ArrayList<Paciente> pacientes = new ArrayList<>();
+        try {
+            Connection conexion = getConexion();
+
+            // Crear una sentencia SQL para buscar los pacientes
+            String sql = "SELECT * FROM clinica.pacientes";
+            PreparedStatement statement = conexion.prepareStatement(sql);
+
+            // Ejecutar la consulta SQL
+            ResultSet resultSet = statement.executeQuery();
+
+            // Recorrer el resultado y construir la lista de pacientes
+            while (resultSet.next()) {
+                String dni = resultSet.getString("dni");
+                String nombre = resultSet.getString("nombre");
+                String apellido1 = resultSet.getString("apellido1");
+                String apellido2 = resultSet.getString("apellido2");
+                int edad = resultSet.getInt("edad");
+
+                Paciente paciente = new Paciente(dni, nombre, apellido1, apellido2, edad);
+                pacientes.add(paciente);
+            }
+
+            // Cerrar el ResultSet, el PreparedStatement y la conexión después de usarlos
+            resultSet.close();
+            statement.close();
+            conexion.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return pacientes;
+    }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+    public void mostrarHistorialMedico(String dni, JTable tabla) {
+        Connection conexion = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            conexion = getConexion();
+
+            // Crear una sentencia SQL para obtener el historial médico del paciente sin el campo "ID"
+            String sql = "SELECT dni_paciente, fecha, descripcion FROM clinica.historial_medico WHERE dni_paciente = ?";
+            statement = conexion.prepareStatement(sql);
+            statement.setString(1, dni);
+
+            resultSet = statement.executeQuery();
+
+            // Crear modelo de tabla y establecerlo en la JTable
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("DNI Paciente");
+            model.addColumn("Fecha");
+            model.addColumn("Descripción");
+
+            while (resultSet.next()) {
+                String dniPaciente = resultSet.getString("dni_paciente");
+                String fecha = resultSet.getString("fecha");
+                String descripcion = resultSet.getString("descripcion");
+
+                // Agregar fila al modelo de tabla
+                model.addRow(new Object[]{dniPaciente, fecha, descripcion});
+            }
+
+            // Establecer el modelo de tabla en la JTable
+            tabla.setModel(model);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Cerrar recursos en orden inverso
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (statement != null) {
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (conexion != null) {
+                try {
+                    conexion.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 }
