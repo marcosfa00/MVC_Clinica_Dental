@@ -35,6 +35,11 @@ public class View {
         Registro x = new Registro();
         x.setVisible(true);
     }
+    
+    public static void mostrarRegistroPacientes(){
+        RegistroPacientes x = new RegistroPacientes();
+        x.setVisible(true);
+    }
 
     public static void mostrarAdmin(){
         Admin x = new Admin();
@@ -90,7 +95,7 @@ public class View {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("DNI");
         modelo.addColumn("Nombre");
-        modelo.addColumn("Apellido");
+        modelo.addColumn("ApellidoXXX");
         modelo.addColumn("Edad");
 
         for (Trabajador trabajador : trabajadores) {

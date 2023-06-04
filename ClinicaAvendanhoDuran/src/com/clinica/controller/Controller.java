@@ -73,6 +73,13 @@ public class Controller {
         ModelRegistro.Registrar(work);
     }
     
+    public static void registrarPacientes(String dni,String nombre,String apellido,String apellido2,int edad){
+       
+        Paciente p = new Paciente(dni,nombre,apellido,apellido2,edad);
+        
+        ModelRegistro.registroPacientes(p);
+    }
+    
     public static void registrarTrabajdores(String dni,String nombre,String apellido,String apellido2,int edad, String especialidad, String contrasenha){
        
         Trabajador work = new Trabajador(dni,nombre,apellido,apellido2,edad);
@@ -93,8 +100,7 @@ public class Controller {
     }
     
     public static void mostrarTrabajadores(JTable tabla){
-        View.mostrarTrabajadoresTabla(singleton.trabajadores, tabla);
-        //View.mostrarPacientesEnTabla(singleton.getPacientes(), tabla);
+        View.mostrarTrabajadoresTabla(singleton.mostrarTrabajadores(), tabla);
     }
     
     public static void mostrarHistorialMedico(String dni, JTable tabla){
@@ -103,6 +109,15 @@ public class Controller {
     
     public static void mostrarHistorialTrabajadores(String dni, JTable tabla){
         ModelTrabajadores.mostrarHistorialTrabajadores(dni, tabla);
+    }
+    
+    
+    public static void eliminarPaciente(String dni, JTable tabla){
+        ModelRegistro.eliminarPacientes(dni);
+    }
+    
+    public static void eliminarTrabajador(String dni, JTable tabla){
+        ModelTrabajadores.eliminarTrabajador(dni);
     }
     
     /**

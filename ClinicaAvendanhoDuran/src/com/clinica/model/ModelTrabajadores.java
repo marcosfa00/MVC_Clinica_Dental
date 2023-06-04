@@ -24,5 +24,9 @@ public class ModelTrabajadores {
       //metodo agregar trabajador
       
   }
+  
+  public static void eliminarTrabajador(String dni){
+      singleton.eliminarRegistroTrabajador(dni);
+  }
     
 }

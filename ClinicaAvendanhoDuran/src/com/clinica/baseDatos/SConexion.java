@@ -163,6 +163,40 @@ public class SConexion {
 
     }
 
+    public void insertarPaciente(Paciente paciente) {
+        try {
+            Connection conexion = (Connection) getConexion();
+
+            // Crear la sentencia SQL para la inserción
+            String sql = "INSERT INTO clinica.pacientes (dni, nombre, apellido1, apellido2, edad)"
+                    + "VALUES (?, ?, ?, ?, ?)";
+
+            // Preparar la sentencia
+            PreparedStatement statement = conexion.prepareStatement(sql);
+            statement.setString(1, paciente.getDni());
+            statement.setString(2, paciente.getNombre());
+            statement.setString(3, paciente.getApellido1());
+            statement.setString(4, paciente.getApellido2());
+            statement.setInt(5, paciente.getEdad());
+
+            // Ejecutar la sentencia
+            int filasAfectadas = statement.executeUpdate();
+
+            // Cerrar el PreparedStatement y la conexión después de usarlos
+            statement.close();
+            conexion.close();
+
+            if (filasAfectadas > 0) {
+                System.out.println("Inserción exitosa");
+            } else {
+                System.out.println("Error al insertar el paciente");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void actualizarContrasenha(String dni, String contrasenha) {
         try {
             Connection conexion = getConexion();
@@ -225,6 +259,40 @@ public class SConexion {
             e.printStackTrace();
         }
         return pacientes;
+    }
+    
+    public ArrayList<Trabajador> mostrarTrabajadores() {
+        ArrayList<Trabajador> trabajadores = new ArrayList<>();
+        try {
+            Connection conexion = getConexion();
+
+            // Crear una sentencia SQL para buscar los pacientes
+            String sql = "SELECT * FROM clinica.trabajadores";
+            PreparedStatement statement = conexion.prepareStatement(sql);
+
+            // Ejecutar la consulta SQL
+            ResultSet resultSet = statement.executeQuery();
+
+            // Recorrer el resultado y construir la lista de pacientes
+            while (resultSet.next()) {
+                String dni = resultSet.getString("dni");
+                String nombre = resultSet.getString("nombre");
+                String apellido1 = resultSet.getString("apellido1");
+                String apellido2 = resultSet.getString("apellido2");
+                int edad = resultSet.getInt("edad");
+
+                Trabajador trabajador = new Trabajador(dni, nombre, apellido1, apellido2, edad);
+                trabajadores.add(trabajador);
+            }
+
+            // Cerrar el ResultSet, el PreparedStatement y la conexión después de usarlos
+            resultSet.close();
+            statement.close();
+            conexion.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return trabajadores;
     }
 
     public void mostrarHistorialMedico(String dni, JTable tabla) {
@@ -318,7 +386,7 @@ public class SConexion {
                 String contrasenha = resultSet.getString("contraseña");
 
                 // Agregar fila al modelo de tabla
-                model.addRow(new Object[]{dniTrabajador, nombre, especialidad,contrasenha});
+                model.addRow(new Object[]{dniTrabajador, nombre, especialidad, contrasenha});
             }
 
             // Establecer el modelo de tabla en la JTable
@@ -350,6 +418,87 @@ public class SConexion {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    public void eliminarRegistroPacientes(String dni) {
+        try {
+            Connection conexion = getConexion();
+
+            // Crear una sentencia SQL para eliminar el registro
+            String sql = "DELETE FROM clinica.pacientes WHERE dni = ?";
+            PreparedStatement statement = conexion.prepareStatement(sql);
+            statement.setString(1, dni);
+
+            // Ejecutar la consulta SQL para eliminar el registro
+            int filasAfectadas = statement.executeUpdate();
+
+            // Verificar si se eliminó correctamente el registro
+            if (filasAfectadas > 0) {
+                System.out.println("Registro eliminado correctamente");
+            } else {
+                System.out.println("No se pudo eliminar el registro");
+            }
+
+            // Cerrar el Statement y la conexión después de usarlos
+            statement.close();
+            conexion.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void eliminarRegistroHistorial_medico(String dni) {
+        try {
+            Connection conexion = getConexion();
+
+            // Crear una sentencia SQL para eliminar el registro
+            String sql = "DELETE FROM clinica.historial_medico WHERE dni_paciente = ?";
+            PreparedStatement statement = conexion.prepareStatement(sql);
+            statement.setString(1, dni);
+
+            // Ejecutar la consulta SQL para eliminar el registro
+            int filasAfectadas = statement.executeUpdate();
+
+            // Verificar si se eliminó correctamente el registro
+            if (filasAfectadas > 0) {
+                System.out.println("Registro eliminado correctamente");
+            } else {
+                System.out.println("No se pudo eliminar el registro");
+            }
+
+            // Cerrar el Statement y la conexión después de usarlos
+            statement.close();
+            conexion.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void eliminarRegistroTrabajador(String dni) {
+        try {
+            Connection conexion = getConexion();
+
+            // Crear una sentencia SQL para eliminar el registro
+            String sql = "DELETE FROM clinica.trabajadores WHERE dni = ?";
+            PreparedStatement statement = conexion.prepareStatement(sql);
+            statement.setString(1, dni);
+
+            // Ejecutar la consulta SQL para eliminar el registro
+            int filasAfectadas = statement.executeUpdate();
+
+            // Verificar si se eliminó correctamente el registro
+            if (filasAfectadas > 0) {
+                System.out.println("Registro eliminado correctamente");
+            } else {
+                System.out.println("No se pudo eliminar el registro");
+            }
+
+            // Cerrar el Statement y la conexión después de usarlos
+            statement.close();
+            conexion.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
