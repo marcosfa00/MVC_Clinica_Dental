@@ -5,6 +5,7 @@
 package com.clinica.view;
 
 import com.clinica.controller.Controller;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -39,7 +40,6 @@ public class Admin extends javax.swing.JFrame {
         btn_buscar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         btn_despedir = new javax.swing.JButton();
-        btn_contratar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1_trabajadores = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -76,13 +76,9 @@ public class Admin extends javax.swing.JFrame {
         btn_despedir.setBackground(new java.awt.Color(255, 0, 0));
         btn_despedir.setForeground(new java.awt.Color(255, 255, 255));
         btn_despedir.setText("DESPEDIR");
-
-        btn_contratar.setBackground(new java.awt.Color(51, 204, 0));
-        btn_contratar.setForeground(new java.awt.Color(255, 255, 255));
-        btn_contratar.setText("CONTRATAR");
-        btn_contratar.addActionListener(new java.awt.event.ActionListener() {
+        btn_despedir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_contratarActionPerformed(evt);
+                btn_despedirActionPerformed(evt);
             }
         });
 
@@ -137,10 +133,8 @@ public class Admin extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(txt_user_trabajador, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(46, 46, 46)
-                                        .addComponent(btn_buscar)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btn_contratar)))
-                                .addGap(453, 453, 453))))
+                                        .addComponent(btn_buscar)))
+                                .addGap(596, 596, 596))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
@@ -167,8 +161,7 @@ public class Admin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_user_trabajador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_buscar)
-                    .addComponent(btn_contratar))
+                    .addComponent(btn_buscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -217,9 +210,10 @@ public class Admin extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btn_buscarActionPerformed
 
-    private void btn_contratarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_contratarActionPerformed
-        View.mostrarRegistro();
-    }//GEN-LAST:event_btn_contratarActionPerformed
+    private void btn_despedirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_despedirActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btn_despedirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -259,7 +253,6 @@ public class Admin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_buscar;
-    private javax.swing.JButton btn_contratar;
     private javax.swing.JButton btn_despedir;
     private javax.swing.JLabel icono1;
     private javax.swing.JLabel jLabel2;

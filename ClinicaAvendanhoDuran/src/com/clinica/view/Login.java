@@ -50,12 +50,12 @@ public class Login extends javax.swing.JFrame {
         label_logo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btn_iniciar_sesion = new javax.swing.JButton();
-        btn_abrir_registro = new javax.swing.JButton();
         lbl_name = new javax.swing.JLabel();
         txt_user = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txt_password = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        btn_contratar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(225, 239, 248));
@@ -67,31 +67,18 @@ public class Login extends javax.swing.JFrame {
         label_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/clinica/imagenes/logo_diente.png"))); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(158, 154, 152));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
         btn_iniciar_sesion.setBackground(new java.awt.Color(158, 154, 152));
-        btn_iniciar_sesion.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        btn_iniciar_sesion.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         btn_iniciar_sesion.setForeground(new java.awt.Color(0, 0, 0));
         btn_iniciar_sesion.setText("Iniciar Sesión");
         btn_iniciar_sesion.setToolTipText("");
         btn_iniciar_sesion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        btn_iniciar_sesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_iniciar_sesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_iniciar_sesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_iniciar_sesionActionPerformed(evt);
-            }
-        });
-
-        btn_abrir_registro.setBackground(new java.awt.Color(158, 154, 152));
-        btn_abrir_registro.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        btn_abrir_registro.setForeground(new java.awt.Color(0, 0, 0));
-        btn_abrir_registro.setText("Registrarse");
-        btn_abrir_registro.setToolTipText("");
-        btn_abrir_registro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        btn_abrir_registro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btn_abrir_registro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_abrir_registroActionPerformed(evt);
             }
         });
 
@@ -101,28 +88,40 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setForeground(new java.awt.Color(60, 63, 65));
         jLabel2.setText("¿Has olvidado la contraseña?");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        btn_contratar.setBackground(new java.awt.Color(158, 154, 152));
+        btn_contratar.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
+        btn_contratar.setForeground(new java.awt.Color(0, 0, 0));
+        btn_contratar.setText("Registrarse");
+        btn_contratar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        btn_contratar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_contratarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addComponent(btn_abrir_registro, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
-                .addComponent(btn_iniciar_sesion, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1)
-                        .addComponent(txt_user)
-                        .addComponent(lbl_name)
-                        .addComponent(txt_password, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btn_contratar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                        .addComponent(btn_iniciar_sesion, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(79, 79, 79))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel1)
+                                .addComponent(txt_user)
+                                .addComponent(lbl_name)
+                                .addComponent(txt_password, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,11 +136,11 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(txt_password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_iniciar_sesion, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_abrir_registro, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23))
+                    .addComponent(btn_contratar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -153,7 +152,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(label_logo)
                 .addGap(73, 73, 73)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,10 +193,9 @@ public class Login extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btn_iniciar_sesionActionPerformed
 
-    private void btn_abrir_registroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_abrir_registroActionPerformed
-        // TODO add your handling code here:
+    private void btn_contratarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_contratarActionPerformed
         View.mostrarRegistro();
-    }//GEN-LAST:event_btn_abrir_registroActionPerformed
+    }//GEN-LAST:event_btn_contratarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,7 +234,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_abrir_registro;
+    private javax.swing.JButton btn_contratar;
     private javax.swing.JButton btn_iniciar_sesion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
