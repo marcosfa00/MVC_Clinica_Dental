@@ -95,7 +95,7 @@ public class View {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("DNI");
         modelo.addColumn("Nombre");
-        modelo.addColumn("ApellidoXXX");
+        modelo.addColumn("Apellido");
         modelo.addColumn("Edad");
 
         for (Trabajador trabajador : trabajadores) {
