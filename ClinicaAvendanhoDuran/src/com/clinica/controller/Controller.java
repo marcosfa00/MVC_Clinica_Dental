@@ -13,6 +13,7 @@ import com.clinica.model.ModelDentista;
 
 import com.clinica.model.ModelLogin;
 import com.clinica.model.ModelRegistro;
+import com.clinica.model.ModelTrabajadores;
 import com.clinica.view.View;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -37,18 +38,21 @@ public class Controller {
      */
     public static void LogIn(String user,String pwd, ArrayList<Trabajador> list) {
        
-           list = singleton.obtenerTrabajadores();
+           list = singleton.trabajadores;
            Trabajador worker  = new Trabajador();
          worker=  ModelLogin.loginUser(user, pwd, list);
          if(worker == null){
              //throw new MyExceptions().showException("", "");
              System.out.println("Error al buscar trabajador");
          }else{
-             if(worker.getEspecialidad().contains("admin")){
+             if(worker.getEspecialidad().contains("Admin")){
                  System.out.println(worker.getEspecialidad());
                  View.mostrarAdmin();
+                 System.out.println("Se ejecuta vista de admin");
              }else{
                  View.mostrarDentista();
+                System.out.println("No se ejecuta vista de admin");
+
                  
                 
              }
@@ -57,11 +61,26 @@ public class Controller {
         
     }
     
+    
     public static void getConexion(int device) throws SQLException{
         singleton.getConexion();
     }
     
     public static void registrar(String dni,String nombre,String apellido,String apellido2,int edad){
+       
+        Trabajador work = new Trabajador(dni,nombre,apellido,apellido2,edad);
+        
+        ModelRegistro.Registrar(work);
+    }
+    
+    public static void registrarPacientes(String dni,String nombre,String apellido,String apellido2,int edad){
+       
+        Paciente p = new Paciente(dni,nombre,apellido,apellido2,edad);
+        
+        ModelRegistro.registroPacientes(p);
+    }
+    
+    public static void registrarTrabajdores(String dni,String nombre,String apellido,String apellido2,int edad, String especialidad, String contrasenha){
        
         Trabajador work = new Trabajador(dni,nombre,apellido,apellido2,edad);
         
@@ -80,8 +99,25 @@ public class Controller {
        
     }
     
+    public static void mostrarTrabajadores(JTable tabla){
+        View.mostrarTrabajadoresTabla(singleton.mostrarTrabajadores(), tabla);
+    }
+    
     public static void mostrarHistorialMedico(String dni, JTable tabla){
         ModelDentista.mostrarHistorialMedico(dni, tabla);
+    }
+    
+    public static void mostrarHistorialTrabajadores(String dni, JTable tabla){
+        ModelTrabajadores.mostrarHistorialTrabajadores(dni, tabla);
+    }
+    
+    
+    public static void eliminarPaciente(String dni, JTable tabla){
+        ModelRegistro.eliminarPacientes(dni);
+    }
+    
+    public static void eliminarTrabajador(String dni, JTable tabla){
+        ModelTrabajadores.eliminarTrabajador(dni);
     }
     
     /**
@@ -96,7 +132,7 @@ public class Controller {
               
               
               ArrayList<Trabajador>lista = new ArrayList<>();
-              lista =singleton.obtenerTrabajadores();
+              lista =singleton.getTrabajadores();
               View.mostrarTrabajadores(lista);
                
                 

@@ -115,7 +115,7 @@ public class UpdatePWD extends javax.swing.JFrame {
 
     private void btn_guardar_n_pwdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardar_n_pwdActionPerformed
       Controller.cambiarPWD(txt_user.getText(), txt_password.getText());
-      singleton.obtenerTrabajadores();
+      singleton.getTrabajadores();
     }//GEN-LAST:event_btn_guardar_n_pwdActionPerformed
 
     /**

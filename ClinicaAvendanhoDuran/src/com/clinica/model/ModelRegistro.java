@@ -5,6 +5,7 @@
 package com.clinica.model;
 
 import com.clinica.baseDatos.SConexion;
+import com.clinica.clases.Paciente;
 import com.clinica.clases.Trabajador;
 
 
@@ -23,5 +24,14 @@ public static void Registrar(Trabajador work){
     
 }
 
+public static void registroPacientes(Paciente p){
+    singleton.insertarPaciente(p);
+    
+}
+
+public static void eliminarPacientes(String dni){
+    singleton.eliminarRegistroHistorial_medico(dni);
+    singleton.eliminarRegistroPacientes(dni);
+}
     
 }
