@@ -45,7 +45,7 @@ public class Controller {
              //throw new MyExceptions().showException("", "");
              System.out.println("Error al buscar trabajador");
          }else{
-             if(worker.getEspecialidad().contains("Admin")){
+             if(worker.getEspecialidad().contains("admin")){
                  System.out.println(worker.getEspecialidad());
                  View.mostrarAdmin();
                  System.out.println("Se ejecuta vista de admin");

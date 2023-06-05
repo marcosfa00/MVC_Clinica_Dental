@@ -10,7 +10,7 @@ package com.clinica.baseDatos;
  */
 import com.clinica.clases.Paciente;
 import com.clinica.clases.Trabajador;
-import com.clinica.view.View;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -27,7 +27,7 @@ public class SConexion {
     private static Connection conexion = null;
     private static final String db = "clinicadental";
     private static final String host = "localhost";
-    private static final String puerto = "5432";//la cambio, sino no deja
+    private static final String puerto = "5434";//la cambio, sino no deja
     public ArrayList<Trabajador> trabajadores = new ArrayList<>();
 
     private SConexion() {
@@ -105,7 +105,7 @@ public class SConexion {
                 String apellido2 = resultSet.getString("apellido2");
                 int edad = resultSet.getInt("edad");
                 String especialidad = resultSet.getString("especialidad");
-                String pwd = resultSet.getString("contraseña"); //esta mal, lo llamaste "contraseña" al crearlo
+                String pwd = resultSet.getString("contrasenha"); //esta mal, lo llamaste "contraseña" al crearlo
 
                 Trabajador trabajador = new Trabajador(dni, nombre, apellido1, apellido2, edad);
                 trabajador.setEspecialidad(especialidad);
