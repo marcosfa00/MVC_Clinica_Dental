@@ -57,6 +57,11 @@ public class Controller {
         
     }
     
+    public static void registrarTratamiento(int id, String dni,String tratamiento){
+        singleton.registrarTratamiento(id,tratamiento, dni);
+        
+    }
+    
     public static void getConexion(int device) throws SQLException{
         singleton.getConexion();
     }

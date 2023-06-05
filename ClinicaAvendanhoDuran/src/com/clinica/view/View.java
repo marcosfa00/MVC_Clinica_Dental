@@ -17,6 +17,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class View {
     
+    
+    
     public static void mostrarLogIn(){
             Login x = new Login();
             x.setVisible(true);
@@ -59,6 +61,7 @@ public class View {
         System.out.println("Joptionpane actualizado");
     }
    
+ 
     
     public static void mostrarPacientesEnTabla(ArrayList<Paciente> pacientes, JTable tabla) {
     DefaultTableModel modelo = new DefaultTableModel();

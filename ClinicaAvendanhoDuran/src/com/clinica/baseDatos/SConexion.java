@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
+import java.time.LocalDate;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -297,7 +298,38 @@ public class SConexion {
 
     
     
-    
+ public void registrarTratamiento(int idTratamiento, String dniPaciente, String descripcion) {
+    try {
+        Connection conexion = getConexion();
+
+        // Crear la sentencia SQL para la inserción del tratamiento
+        String sql = "INSERT INTO clinica.historial_medico (id, dni_paciente, fecha, descripcion) VALUES (?, ?, CURRENT_DATE, ?)";
+
+        // Preparar la sentencia
+        PreparedStatement statement = conexion.prepareStatement(sql);
+        statement.setInt(1, idTratamiento);
+        statement.setString(2, dniPaciente);
+        statement.setString(3, descripcion);
+
+        // Ejecutar la sentencia
+        int filasAfectadas = statement.executeUpdate();
+
+        // Cerrar el PreparedStatement y la conexión después de usarlos
+        statement.close();
+        conexion.close();
+
+        if (filasAfectadas > 0) {
+            System.out.println("Registro del tratamiento exitoso");
+        } else {
+            System.out.println("Error al registrar el tratamiento");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+
+
     
     
     
