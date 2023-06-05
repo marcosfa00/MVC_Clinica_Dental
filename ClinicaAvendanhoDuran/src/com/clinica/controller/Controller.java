@@ -120,6 +120,11 @@ public class Controller {
         ModelTrabajadores.eliminarTrabajador(dni);
     }
     
+    
+    public static void anhadirTratamiento(String dni,String descripcion){
+        singleton.insertarHistorialMedico(dni,descripcion);
+    }
+    
     /**
      * METODO MAIN
      * @param args

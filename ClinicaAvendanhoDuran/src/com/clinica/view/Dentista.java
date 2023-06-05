@@ -63,6 +63,7 @@ jTable1_pacientes.addMouseListener(new MouseAdapter() {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1_Historial = new javax.swing.JTable();
         btn_nuevo_tratamiento = new javax.swing.JButton();
+        Cbox_tratamiento = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -117,6 +118,18 @@ jTable1_pacientes.addMouseListener(new MouseAdapter() {
         jScrollPane3.setViewportView(jTable1_Historial);
 
         btn_nuevo_tratamiento.setText("NUEVO TRATAMIENTO");
+        btn_nuevo_tratamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_nuevo_tratamientoActionPerformed(evt);
+            }
+        });
+
+        Cbox_tratamiento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Odontología general", "Ortodoncia", "Periodoncia", "Endodoncia", "Odontopediatría", "Cirugía oral y maxilofacial", "Odontología estética" }));
+        Cbox_tratamiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cbox_tratamientoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -148,7 +161,9 @@ jTable1_pacientes.addMouseListener(new MouseAdapter() {
                                         .addGap(86, 86, 86)
                                         .addComponent(btn_buscar)
                                         .addGap(49, 49, 49)
-                                        .addComponent(btn_nuevo_tratamiento)))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(Cbox_tratamiento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btn_nuevo_tratamiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                                 .addGap(382, 382, 382))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,9 +182,15 @@ jTable1_pacientes.addMouseListener(new MouseAdapter() {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Cbox_tratamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3)))
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -178,7 +199,7 @@ jTable1_pacientes.addMouseListener(new MouseAdapter() {
                     .addComponent(btn_nuevo_tratamiento))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,9 +210,7 @@ jTable1_pacientes.addMouseListener(new MouseAdapter() {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 996, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1167, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,9 +222,23 @@ jTable1_pacientes.addMouseListener(new MouseAdapter() {
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         // TODO add your handling code here:
+      
         Controller.mostrarHistorialMedico(txt_dni_dentista.getText(), jTable1_Historial);
         
     }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void Cbox_tratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cbox_tratamientoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Cbox_tratamientoActionPerformed
+
+    private void btn_nuevo_tratamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevo_tratamientoActionPerformed
+        // TODO add your handling code here:
+        String cbox = (String) Cbox_tratamiento.getSelectedItem();
+        System.out.println(cbox);
+        
+        Controller.anhadirTratamiento(txt_dni_dentista.getText(),cbox);
+        
+    }//GEN-LAST:event_btn_nuevo_tratamientoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,6 +276,7 @@ jTable1_pacientes.addMouseListener(new MouseAdapter() {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Cbox_tratamiento;
     private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_nuevo_tratamiento;
     private javax.swing.JLabel icono;

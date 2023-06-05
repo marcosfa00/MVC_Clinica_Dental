@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
+import java.time.LocalDate;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -502,4 +503,49 @@ public class SConexion {
         }
     }
 
+    
+   public void insertarHistorialMedico(String dniPaciente, String descripcion) {
+    try {
+        Connection conexion = getConexion();
+        String query = "INSERT INTO clinica.historial_medico (id, dni_paciente, fecha, descripcion) "
+                     + "VALUES (DEFAULT, ?, ?, ?)";
+
+        // Obtén la fecha actual
+        LocalDate fechaActual = LocalDate.now();
+
+        // Prepara la sentencia SQL con los parámetros
+        PreparedStatement statement = conexion.prepareStatement(query);
+        statement.setString(1, dniPaciente);
+        statement.setDate(2, java.sql.Date.valueOf(fechaActual));
+        statement.setString(3, descripcion);
+
+        // Ejecuta el insert
+        statement.executeUpdate();
+
+        System.out.println("El historial médico se ha insertado correctamente.");
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+}
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
