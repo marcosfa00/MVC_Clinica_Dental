@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  * @author marcosfa
  */
 public class MyExceptions extends Exception {
-    private static final ImageIcon icono = new ImageIcon(MyExceptions.class.getResource("/imágenes/logo_diente_icon.png"));
+    public static final ImageIcon icono = new ImageIcon(MyExceptions.class.getResource("/imágenes/logo_diente_icon.png"));
     public MyExceptions() {
        
        

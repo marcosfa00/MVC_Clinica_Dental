@@ -37,7 +37,7 @@ public class UpdatePWD extends javax.swing.JFrame {
         lbl_name = new javax.swing.JLabel();
         btn_guardar_n_pwd = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(158, 154, 152));
 

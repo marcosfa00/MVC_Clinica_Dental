@@ -88,7 +88,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel2.setForeground(new java.awt.Color(60, 63, 65));
         jLabel2.setText("¿Has olvidado la contraseña?");
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         btn_contratar.setBackground(new java.awt.Color(158, 154, 152));
         btn_contratar.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N

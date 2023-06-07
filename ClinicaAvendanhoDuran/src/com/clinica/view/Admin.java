@@ -99,7 +99,8 @@ public class Admin extends javax.swing.JFrame {
         jLabel5.setText("BUSQUEDAS REALIZADAS");
 
         btn_despedir.setBackground(new java.awt.Color(255, 0, 0));
-        btn_despedir.setForeground(new java.awt.Color(255, 255, 255));
+        btn_despedir.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        btn_despedir.setForeground(new java.awt.Color(102, 102, 102));
         btn_despedir.setText("DESPEDIR");
         btn_despedir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,6 +149,8 @@ public class Admin extends javax.swing.JFrame {
         });
 
         btn_alta.setBackground(new java.awt.Color(0, 204, 0));
+        btn_alta.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        btn_alta.setForeground(new java.awt.Color(51, 51, 51));
         btn_alta.setText("DAR DE ALTA");
         btn_alta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -156,7 +159,8 @@ public class Admin extends javax.swing.JFrame {
         });
 
         btn_baja.setBackground(new java.awt.Color(255, 0, 0));
-        btn_baja.setForeground(new java.awt.Color(255, 255, 255));
+        btn_baja.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
+        btn_baja.setForeground(new java.awt.Color(51, 51, 51));
         btn_baja.setText("DAR DE BAJA");
         btn_baja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

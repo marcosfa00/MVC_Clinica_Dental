@@ -90,6 +90,10 @@ public class Controller {
     public static void cambiarPWD(String dni,String contrasenha){
         singleton.actualizarContrasenha(dni, contrasenha);
         View.pwdUpdated();
+       
+       
+        View.mostrarTrabajadores(singleton.trabajadores);
+        
     }
       
        

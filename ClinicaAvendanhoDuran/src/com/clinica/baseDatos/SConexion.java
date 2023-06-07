@@ -10,6 +10,8 @@ package com.clinica.baseDatos;
  */
 import com.clinica.clases.Paciente;
 import com.clinica.clases.Trabajador;
+import com.clinica.excepciones.MyExceptions;
+import static com.clinica.excepciones.MyExceptions.icono;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,11 +21,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.time.LocalDate;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class SConexion {
-
+ //private static  ImageIcon icono_1 = new ImageIcon(MyExceptions.class.getResource("/imagenes/logo_diente_icon.png"));
     private static SConexion instance = null;
     private static Connection conexion = null;
     private static final String db = "clinicadental";
@@ -160,6 +165,8 @@ public class SConexion {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            MyExceptions x = new MyExceptions();
+            System.out.println( x.getMessage());
         }
 
     }
@@ -189,11 +196,14 @@ public class SConexion {
 
             if (filasAfectadas > 0) {
                 System.out.println("Inserción exitosa");
+                 JOptionPane.showMessageDialog(null, "SE HA REGISTRADO CON EXITO", "REGISTRO",0);
             } else {
                 System.out.println("Error al insertar el paciente");
             }
         } catch (SQLException e) {
             e.printStackTrace();
+             MyExceptions x = new MyExceptions();
+            System.out.println( x.getMessage());
         }
 
     }
@@ -216,6 +226,7 @@ public class SConexion {
             // Verificar si se actualizó correctamente la contraseña
             if (filasAfectadas > 0) {
                 System.out.println("Contraseña actualizada correctamente");
+                  JOptionPane.showMessageDialog(null, "CONTRASEÑA ACTUALIZADA CORRECTAMENTE", "ACTUALIZAR CONTRASEÑA", 0);
             } else {
                 System.out.println("No se pudo actualizar la contraseña");
             }
@@ -225,6 +236,8 @@ public class SConexion {
             conexion.close();
         } catch (SQLException e) {
             e.printStackTrace();
+             MyExceptions x = new MyExceptions();
+            System.out.println( x.getMessage());
         }
     }
 
@@ -258,6 +271,8 @@ public class SConexion {
             conexion.close();
         } catch (SQLException e) {
             e.printStackTrace();
+             MyExceptions x = new MyExceptions();
+            System.out.println( x.getMessage());
         }
         return pacientes;
     }

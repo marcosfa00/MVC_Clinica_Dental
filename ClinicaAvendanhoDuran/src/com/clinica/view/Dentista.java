@@ -29,7 +29,7 @@ jTable1_pacientes.addMouseListener(new MouseAdapter() {
             int filaSeleccionada = jTable1_pacientes.getSelectedRow();
             if (filaSeleccionada != -1) { // Verificar si se ha seleccionado una fila
                 String dni = jTable1_pacientes.getValueAt(filaSeleccionada, 0).toString();
-              
+              txt_dni_dentista.setText(dni);
                 Controller.mostrarHistorialMedico(dni, jTable1_Historial);
               
                 
