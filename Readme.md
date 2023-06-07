@@ -1,4 +1,3 @@
-El README que has proporcionado contiene información sobre la estructura de la aplicación de clínica dental, el patrón de diseño MVC utilizado y el diagrama de clases. Sin embargo, hay una sección adicional al final relacionada con el patrón Observer. A continuación, he reorganizado el README para incluir esa sección y hacerlo más claro:
 
 # Aplicación de Clínica Dental
 
