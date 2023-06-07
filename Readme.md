@@ -149,3 +149,11 @@ La aplicación de clínica dental se ha desarrollado utilizando Java. A continua
 
 Las contribuciones a esta aplicación de clínica dental son bienvenidas. Si encuentras algún problema, tienes ideas para mejoras o deseas agregar nuevas características, puedes enviar una solicitud de extracción o abrir un problema en el repositorio.
 
+
+### Observer
+En la clase `SConexion` se implementa
+`Observable`. De esta forma, cada vez que se elimina un registro, los métodos
+`setChanged()` y `notifyObservers()`, llamarán al método `update()`. Este último
+método está en la clase `ObservarRegistro` que es la que extiende de `Observer` y se
+sobrescribe de tal forma que cada vez que se ejecuta se mande un mensaje al usuario
+indicando que el registro se ha eliminado correctamente. 
