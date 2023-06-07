@@ -1,3 +1,5 @@
+El README que has proporcionado contiene información sobre la estructura de la aplicación de clínica dental, el patrón de diseño MVC utilizado y el diagrama de clases. Sin embargo, hay una sección adicional al final relacionada con el patrón Observer. A continuación, he reorganizado el README para incluir esa sección y hacerlo más claro:
+
 # Aplicación de Clínica Dental
 
 Esta es una aplicación de clínica dental diseñada para la gestión de pacientes, citas, tratamientos y facturación. La aplicación se ha implementado siguiendo el patrón de diseño Modelo-Vista-Controlador (MVC) en Java.
@@ -149,11 +151,9 @@ La aplicación de clínica dental se ha desarrollado utilizando Java. A continua
 
 Las contribuciones a esta aplicación de clínica dental son bienvenidas. Si encuentras algún problema, tienes ideas para mejoras o deseas agregar nuevas características, puedes enviar una solicitud de extracción o abrir un problema en el repositorio.
 
-
 ### Observer
-En la clase `SConexion` se implementa
-`Observable`. De esta forma, cada vez que se elimina un registro, los métodos
-`setChanged()` y `notifyObservers()`, llamarán al método `update()`. Este último
-método está en la clase `ObservarRegistro` que es la que extiende de `Observer` y se
-sobrescribe de tal forma que cada vez que se ejecuta se mande un mensaje al usuario
-indicando que el registro se ha eliminado correctamente. 
+
+En la clase `SConexion` se implement
+
+a `Observable`. De esta forma, cada vez que se elimina un registro, los métodos `setChanged()` y `notifyObservers()` llamarán al método `update()`. Este último método está en la clase `ObservarRegistro`, que extiende de `Observer`, y se sobrescribe de tal forma que cada vez que se ejecuta se envía un mensaje al usuario indicando que el registro se ha eliminado correctamente. Esto permite tener una comunicación activa entre `SConexion` y `ObservarRegistro` para notificar sobre los cambios realizados en los registros y actualizar la interfaz de usuario de manera adecuada.
+
