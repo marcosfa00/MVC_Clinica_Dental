@@ -5,6 +5,7 @@
 package com.clinica.view;
 
 import com.clinica.controller.Controller;
+import java.util.Observer;
 
 /**
  *

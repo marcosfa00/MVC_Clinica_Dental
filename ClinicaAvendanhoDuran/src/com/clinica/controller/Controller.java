@@ -27,6 +27,7 @@ import javax.swing.JTable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JTable;
+import observer.ObserverRegistro;
 
 /**
  * La clase Controller es la clase principal que actúa como controlador en el sistema.
@@ -93,6 +94,8 @@ public class Controller {
      * @param apellido2 El segundo apellido del paciente.
      * @param edad La edad del paciente.
      */
+    
+   
     public static void registrarPacientes(String dni, String nombre, String apellido, String apellido2, int edad) {
         Paciente p = new Paciente(dni, nombre, apellido, apellido2, edad);
         ModelRegistro.registroPacientes(p);
@@ -191,6 +194,9 @@ public class Controller {
      * @throws SQLException Si ocurre un error relacionado con la base de datos.
      */
     public static void main(String[] args) throws SQLException {
+        ObserverRegistro obxO = new ObserverRegistro();
+        singleton.addObserver(obxO);
+        
         View.mostrarLogIn();
         
         ArrayList<Trabajador> lista = new ArrayList<>();

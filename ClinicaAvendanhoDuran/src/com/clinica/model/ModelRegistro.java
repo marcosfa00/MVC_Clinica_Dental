@@ -7,6 +7,7 @@ package com.clinica.model;
 import com.clinica.baseDatos.SConexion;
 import com.clinica.clases.Paciente;
 import com.clinica.clases.Trabajador;
+import java.util.Observable;
 
 
 
@@ -20,7 +21,7 @@ import com.clinica.clases.Trabajador;
  * La clase ModelRegistro proporciona métodos estáticos para registrar trabajadores y pacientes en un sistema.
  * Utiliza una instancia de la clase SConexion para realizar las operaciones de inserción y eliminación.
  */
-public class ModelRegistro {
+public class ModelRegistro{
     
     static SConexion singleton = SConexion.getInstance();
     

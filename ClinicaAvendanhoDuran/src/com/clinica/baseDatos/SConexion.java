@@ -21,13 +21,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.sql.PreparedStatement;
 import java.time.LocalDate;
+import java.util.Observable;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class SConexion {
+public class SConexion extends Observable{
  //private static  ImageIcon icono_1 = new ImageIcon(MyExceptions.class.getResource("/imagenes/logo_diente_icon.png"));
     private static SConexion instance = null;
     private static Connection conexion = null;
@@ -500,6 +501,8 @@ public class SConexion {
             // Verificar si se eliminó correctamente el registro
             if (filasAfectadas > 0) {
                 System.out.println("Registro eliminado correctamente");
+                setChanged();
+                notifyObservers();
             } else {
                 System.out.println("No se pudo eliminar el registro");
             }
@@ -531,6 +534,8 @@ public class SConexion {
             // Verificar si se eliminó correctamente el registro
             if (filasAfectadas > 0) {
                 System.out.println("Registro eliminado correctamente");
+                setChanged();
+                notifyObservers();
             } else {
                 System.out.println("No se pudo eliminar el registro");
             }
@@ -558,6 +563,8 @@ public class SConexion {
             // Verificar si se eliminó correctamente el registro
             if (filasAfectadas > 0) {
                 System.out.println("Registro eliminado correctamente");
+                setChanged();
+                notifyObservers();
             } else {
                 System.out.println("No se pudo eliminar el registro");
             }
