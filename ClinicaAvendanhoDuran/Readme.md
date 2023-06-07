@@ -119,3 +119,11 @@ sequenceDiagram
 
 ````
 
+### Observer
+En la clase `SConexion` se implementa
+`Observable`. De esta forma, cada vez que se elimina un registro, los métodos 
+`setChanged()` y `notifyObservers()`, llamarán al método `update()`. Este último 
+método está en la clase `ObservarRegistro` que es la que extiende de `Observer` y se
+sobrescribe de tal forma que cada vez que se ejecuta se mande un mensaje al usuario
+indicando que el registro se ha eliminado correctamente. 
+

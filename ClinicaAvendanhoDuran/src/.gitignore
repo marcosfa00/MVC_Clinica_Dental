@@ -1,0 +1,11 @@
+.idea/
+build/
+dist/
+nbproject/
+SEC _com/
+Favorites
+test/
+build.xml
+info.plist
+manifest.mf
+

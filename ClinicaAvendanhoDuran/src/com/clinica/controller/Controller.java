@@ -27,7 +27,7 @@ import javax.swing.JTable;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JTable;
-import observer.ObserverRegistro;
+import com.clinica.observer.ObserverRegistro;
 
 /**
  * La clase Controller es la clase principal que actúa como controlador en el sistema.
