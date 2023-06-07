@@ -39,14 +39,21 @@ public class SConexion {
     private SConexion() {
         // Constructor privado para evitar la creación de instancias directamente
     }
-
+    /**
+     * se instanacia la conexion
+     * @return SConexion
+     */
     public static SConexion getInstance() {
         if (instance == null) {
             instance = new SConexion();
         }
         return instance;
     }
-
+    /**
+     * Obtiene una instancia de la clase SConexion.
+     *
+     * @return La instancia de SConexion.
+     */
     public Connection getConexion() throws SQLException {
         if (conexion == null || conexion.isClosed()) {
             try {
@@ -70,7 +77,12 @@ public class SConexion {
         }
         return conexion;
     }
-
+/**
+     * Obtiene la conexión a la base de datos.
+     *
+     * @return La conexión a la base de datos.
+     * @throws SQLException Si ocurre un error al obtener la conexión.
+     */
     private void mostrarSearchPath(Statement statement) {
         try {
             // Crear una consulta para obtener el valor actual del "search_path"
@@ -90,6 +102,11 @@ public class SConexion {
         }
     }
 
+    /**
+     * Obtiene la lista de trabajadores.
+     *
+     * @return La lista de trabajadores.
+     */
     public ArrayList<Trabajador> getTrabajadores() {
 
         try {
@@ -132,7 +149,11 @@ public class SConexion {
 
         return trabajadores;
     }
-
+/**
+     * Inserta un trabajador en la base de datos.
+     *
+     * @param trabajador El trabajador a insertar.
+     */
     public void insertarTrabajador(Trabajador trabajador) {
         try {
             Connection conexion = (Connection) getConexion();
@@ -170,7 +191,11 @@ public class SConexion {
         }
 
     }
-
+/**
+     * Inserta un paciente en la base de datos.
+     *
+     * @param paciente El paciente a insertar.
+     */
     public void insertarPaciente(Paciente paciente) {
         try {
             Connection conexion = (Connection) getConexion();
@@ -207,7 +232,12 @@ public class SConexion {
         }
 
     }
-
+/**
+     * Actualiza la contraseña de un trabajador en la base de datos.
+     *
+     * @param dni         El DNI del trabajador.
+     * @param contrasenha La nueva contraseña.
+     */
     public void actualizarContrasenha(String dni, String contrasenha) {
         try {
             Connection conexion = getConexion();
@@ -240,7 +270,11 @@ public class SConexion {
             System.out.println( x.getMessage());
         }
     }
-
+/**
+     * Obtiene la lista de pacientes.
+     *
+     * @return La lista de pacientes.
+     */
     public ArrayList<Paciente> getPacientes() {
         ArrayList<Paciente> pacientes = new ArrayList<>();
         try {
@@ -276,7 +310,12 @@ public class SConexion {
         }
         return pacientes;
     }
-    
+    /**
+     * Muestra el historial médico de un paciente en una tabla.
+     *
+     * @param dni   El DNI del paciente.
+     * @param tabla La tabla donde se mostrará el historial médico.
+     */
     public ArrayList<Trabajador> mostrarTrabajadores() {
         ArrayList<Trabajador> trabajadores = new ArrayList<>();
         try {
@@ -310,7 +349,12 @@ public class SConexion {
         }
         return trabajadores;
     }
-
+/**
+     * Muestra el historial de trabajadores en una tabla.
+     *
+     * @param dni   El DNI del trabajador.
+     * @param tabla La tabla donde se mostrará el historial de trabajadores.
+     */
     public void mostrarHistorialMedico(String dni, JTable tabla) {
         Connection conexion = null;
         PreparedStatement statement = null;
@@ -436,7 +480,11 @@ public class SConexion {
             }
         }
     }
-
+/**
+     * Elimina un registro de pacientes de la base de datos.
+     *
+     * @param dni El DNI del paciente a eliminar.
+     */
     public void eliminarRegistroPacientes(String dni) {
         try {
             Connection conexion = getConexion();
@@ -463,7 +511,11 @@ public class SConexion {
             e.printStackTrace();
         }
     }
-
+/**
+     * Elimina un registro de historial médico de la base de datos.
+     *
+     * @param dni El DNI del paciente cuyo historial se eliminará.
+     */
     public void eliminarRegistroHistorial_medico(String dni) {
         try {
             Connection conexion = getConexion();

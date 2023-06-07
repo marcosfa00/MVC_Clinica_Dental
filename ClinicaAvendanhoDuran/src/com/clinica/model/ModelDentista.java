@@ -14,7 +14,11 @@ import javax.swing.JTable;
  */
 public class ModelDentista {
     static SConexion singleton = SConexion.getInstance();
-    
+   /**
+    * Muestra el historial médico
+    * @param dni
+    * @param tabla  en la que se va a mostrar el historial
+    */ 
   public static void mostrarHistorialMedico(String dni, JTable tabla){
       singleton.mostrarHistorialMedico(dni, tabla);
   }
